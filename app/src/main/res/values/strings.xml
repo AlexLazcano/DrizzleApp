@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Testing</string>
+    <string name="drizzle_app">Drizzle app</string>
 </resources>
