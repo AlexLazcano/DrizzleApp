@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Drizzle</string>
     <string name="drizzle_app">Drizzle app</string>
+    <string name="current_groups">Current Groups</string>
 </resources>
