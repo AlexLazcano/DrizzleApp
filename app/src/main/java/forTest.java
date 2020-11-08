@@ -1,41 +1,46 @@
+import android.service.autofill.AutofillService;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class forTest {
     public static void main (String args[]){
-        userPool newPool = new userPool();
-        user user1 = new user(newPool);
+        UserPool newPool = new UserPool();
+        User user1 = new User(newPool);
         user1.setName("Haoyuan Zhao");
-        user1.setUserId(100);
+        user1.setUserId(1);
 
-        user user2 = new user(newPool);
-        user2.setName("114514");
-        user2.setUserId(123);
+        User user2 = new User(newPool);
+        user2.setName("Joe");
+        user2.setUserId(2);
 
-        user user3 = new user(newPool);
-        user3.setName("RNM退钱");
-        user3.setUserId(4396);
+        User user3 = new User(newPool);
+        user3.setName("Bill");
+        user3.setUserId(3);
 
-        user user4 = new user(newPool);
-        user4.setName("马保国");
-        user4.setUserId(250);
+        User user4 = new User(newPool);
+        user4.setName("Jack");
+        user4.setUserId(4);
 
-        group group1 = new group(newPool,"yygq组",101);
+        Group group1 = new Group(newPool,"Amazing group",101);
+        Group group2 = new Group(newPool,"Sunday group",102);
+
         group1.addMember(user1);
-        group1.addMember(user2);
-        group1.printGroupInfo();
-
-        group group2 = new group(newPool,"整活组",102);
-        group2.addMember(user2);
+        group1.addMember(user4);
+        group2.addMember(user1);
         group2.addMember(user3);
-        group2.addMember(user4);
-        group2.printGroupInfo();
+        group2.addMember(user2);
 
-        user1.printMyGroupInfo();
-        user2.printMyGroupInfo();
+        newPool.printAllInfo();
 
-        group2.quitGroup(123);
-        group2.printGroupInfo();
-        user2.printMyGroupInfo();
+        group1.quitGroup(user1);
+        newPool.writtenOff(user3.getUserId());
 
-        System.out.println("We have " + newPool.numOfGroups() + " groups, and " +
-                            newPool.numOfUsers() + " users");
+        System.out.println("After the quit option:\n");
+
+        newPool.printAllInfo();
+
     }
+
 }

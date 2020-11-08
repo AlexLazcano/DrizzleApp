@@ -8,11 +8,13 @@ import java.util.List;
  * @since 2020-11-6
  */
 
-public class user {
+public class User {
     private String name;
     private int userId;
-    private List<group> myGroup;
+    private List<Group> myGroup;
+
     private String postalCode;
+
     private boolean gender;
     //private int transportation;
     private int major;
@@ -24,7 +26,8 @@ public class user {
     private String school;
     private List<String> favPastClass;
 
-    public user(userPool newPool){
+    //constructor:
+    public User(UserPool newPool){
         this.myGroup = new LinkedList<>();
         this.currentClassed = new LinkedList<>();
         this.favPastClass = new LinkedList<>();
@@ -32,10 +35,10 @@ public class user {
     }
 
     //getter:
+
     public String getName() {
         return name;
     }
-
     public int getUserId() {
         return userId;
     }
@@ -78,6 +81,10 @@ public class user {
 
     public List<String> getFavPastClass() {
         return favPastClass;
+    }
+
+    public List<Group> getMyGroup() {
+        return myGroup;
     }
 
     //setter:
@@ -130,32 +137,31 @@ public class user {
     }
 
     /**
-     *  !!THIS FUNCTION SHOULD NOT BE USED IN MAIN FUNCTION !!
-     *  addgroup() function will call this function automatically
+     *  Add the group into this.mygroup, call addMember() for newGroup if
+     *  newGroup.groupMember currently not contain this user
      * @param newGroup target group
-     * @return return 1 if successful, and return 0 if fail
      */
-    public int joinGroup(group newGroup){
-        if (this.myGroup.contains(newGroup)){
-            return 0;
-        }
+    public void joinGroup(Group newGroup){
         this.myGroup.add(newGroup);
-        return 1;
+        if ( !newGroup.getGroupMember().contains(this)){
+            newGroup.addMember(this);
+        }
+        return;
     }
 
     /**
-     *  !!THIS FUNCTION SHOULD NOT BE USED IN MAIN FUNCTION !!
-     *  quitgroup() function will call this function automatically
+     *  remove the group from this.mygroup, call quitMember() for newGroup if
+     *  newGroup.groupMember currently still contain this user
      * @param newGroup target group
-     * @return return 1 if successful, and return 0 if fail
      */
-    public int leaveGroup(group newGroup){
-        if (this.myGroup.contains(newGroup)){
-            this.myGroup.remove(newGroup);
-            return 1;
+    public void leaveGroup(Group newGroup){
+        this.myGroup.remove(newGroup);
+        if ( newGroup.getGroupMember().contains(this)){
+            newGroup.quitGroup(this);
         }
-        return 0;
+        return;
     }
+
 
     /**
      * print user information, only for test
@@ -176,6 +182,9 @@ public class user {
         return;
     }
 
+    /**
+     * print group information for this user, only for test
+     */
     public void printMyGroupInfo(){
         System.out.println(this.getName() + " have " + this.myGroup.size() + " groups:\n");
         for ( int i = 0; i < this.myGroup.size(); ++i) {

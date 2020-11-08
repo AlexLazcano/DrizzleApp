@@ -8,21 +8,29 @@ import java.util.List;
  * @since 2020-11-6
  */
 
-public class group {
+public class Group {
     private int groupId;
     private String groupName;
-    private List<user> groupMember;
+    private List<User> groupMember;
 
     /**
      * constructor: build the list of user and add this group
      * into group list
      * @param newPool the pool be added to
      */
-    public group(userPool newPool, String groupName, int groupId) {
+    public Group(UserPool newPool, String groupName, int groupId) {
         this.groupName = groupName;
         this.groupId = groupId;
         this.groupMember = new LinkedList<>();
         newPool.addGroup(this);
+    }
+
+    /**
+     * group member getter
+     * @return a list of user
+     */
+    public List<User> getGroupMember() {
+        return groupMember;
     }
 
     /**
@@ -59,28 +67,29 @@ public class group {
     }
 
     /**
-     * add new member into the group, and also call joinGroup for user
+     * add new member into the group, and also call joinGroup for user if
+     * the user.mygroup currently not contain this group
      * @param newUser the new member
      */
-    public void addMember(user newUser){
+    public void addMember(User newUser){
         this.groupMember.add(newUser);
-        newUser.joinGroup(this);
+        if ( !newUser.getMyGroup().contains(this)) {
+            newUser.joinGroup(this);
+        }
         return;
     }
 
     /**
-     * remove the user from group member, and also call leaveGroup for user
-     * @param userId user's id
-     * @return return 1 if successful, and return 0 if fail
+     * remove the user from group member, and also call leaveGroup for user if
+     * the user.mygroup currently still contain this group
+     * @param quitUser the user want to quit
      */
-    public int quitGroup(int userId){
-        int memberIndex = memberSearch(userId);
-        if ( memberIndex != -1){
-            this.groupMember.get(memberIndex).leaveGroup(this);
-            this.groupMember.remove(memberIndex);
-            return 1;
+    public void quitGroup(User quitUser){
+        this.groupMember.remove(quitUser);
+        if ( quitUser.getMyGroup().contains(this) ){
+            quitUser.leaveGroup(this);
         }
-        return 0;
+        return;
     }
 
     /**
@@ -109,10 +118,10 @@ public class group {
      * print group information, only for test
      */
     public void printGroupInfo(){
-        System.out.println("Group name: " + groupName + "\nGroup size :" + this.groupSize());
+        System.out.println("Group name: " + groupName + "\nGroup size :" + this.groupSize() + "\nThis group has " +
+                "following members:");
         for( int i = 0; i < this.groupSize(); ++i){
-            System.out.println( (i+1) + "th:");
-            this.groupMember.get(i).printUserInfo();
+            System.out.println( (i+1) + "th:\nUser name: " + this.groupMember.get(i).getName() + "\n" );
         }
     }
 }

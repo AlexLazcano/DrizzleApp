@@ -8,15 +8,15 @@ import java.util.List;
  * @since 2020-11-6
  */
 
-public class userPool {
-    private List<user> user_list;
-    private List<group> group_list;
+public class UserPool {
+    private List<User> user_list;
+    private List<Group> group_list;
 
     /**
      * Constructor:
      * build the list of user and group
      */
-    public userPool(){
+    public UserPool(){
         this.user_list = new LinkedList<>();
         this.group_list = new LinkedList<>();
     }
@@ -33,7 +33,7 @@ public class userPool {
      * add a user into the user list
      * @param newUser the user be added
      */
-    public void addUser(user newUser){
+    public void addUser(User newUser){
         user_list.add(newUser);
         return;
     }
@@ -64,7 +64,7 @@ public class userPool {
      * add a group into the group list
      * @param newGroup the group be added
      */
-    public void addGroup(group newGroup){
+    public void addGroup(Group newGroup){
         group_list.add(newGroup);
         return;
     }
@@ -83,26 +83,41 @@ public class userPool {
         return -1;
     }
 
-    //wait to build
-//    /**
-//     *
-//     * @param tarId
-//     * @return
-//     */
-//    public int writtenOff(int tarId){
-//        return 0;
-//    }
+    /**
+     * Clean up this user, remove him from all groups he belonged to and
+     * remove this user from user pool
+     * @param userId the user's id
+     */
+    public void writtenOff(int userId){
+        for ( int i = 0; i < this.findUserById(userId).getMyGroup().size(); ++i){
+            this.findUserById(userId).getMyGroup().get(i).quitGroup(this.findUserById(userId));
+        }
+        this.user_list.remove(this.findUserById(userId));
+        return;
+    }
 
     /**
      * search the user by user id
      * @param userId user's id
      * @return the target user(the class </user>), return null if not find
      */
-    public user findUserById(int userId){
+    public User findUserById(int userId){
         int userIndex = userSearch(userId);
         if ( userIndex != -1){
             return user_list.get(userIndex);
         }
         return null;
+    }
+
+    public void printAllInfo(){
+        System.out.println("Now user pool have " + this.numOfUsers() +" users, and " + this.numOfGroups() + " groups" +
+                "\nThe user information are shown as following:");
+        for( int i =0; i < user_list.size(); ++i){
+            this.user_list.get(i).printUserInfo();
+        }
+        System.out.println("The group information is shown as following:");
+        for( int i = 0 ; i < group_list.size(); ++i){
+            this.group_list.get(i).printGroupInfo();
+        }
     }
 }
