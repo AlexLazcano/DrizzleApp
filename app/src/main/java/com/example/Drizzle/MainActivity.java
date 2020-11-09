@@ -1,4 +1,4 @@
-package com.example.testing;
+package com.example.Drizzle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
