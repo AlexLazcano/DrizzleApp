@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /* Login Stuff */
+
+
         /* Alex  Branch */
 //        View t = findViewById(R.id.nav);
 //        NavController navController = findNavController(R.id.fragment);
