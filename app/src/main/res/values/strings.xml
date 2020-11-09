@@ -2,4 +2,8 @@
     <string name="app_name">Drizzle</string>
     <string name="drizzle_app">Drizzle app</string>
     <string name="current_groups">Current Groups</string>
+
+    <string name="first">First Fragment</string>
+    <string name="second">second Fragment</string>
+    <string name="third">third Fragment</string>
 </resources>

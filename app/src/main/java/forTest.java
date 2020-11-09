@@ -26,7 +26,7 @@ public class forTest {
         group1.addMember(userList.get(3));
         group2.addMember(userList.get(0));
         group2.addMember(userList.get(2));
-        group2.addMember(userList.get(1));
+        group2.addMember( userList.get(1));
 
         newPool.printAllInfo();
 
