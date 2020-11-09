@@ -1,4 +1,4 @@
-package com.example.testing;
+package com.example.Drizzle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -6,12 +6,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.view.View;
 
-import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import static androidx.navigation.fragment.NavHostFragment.findNavController;
 
 public class MainActivity extends AppCompatActivity {
 
