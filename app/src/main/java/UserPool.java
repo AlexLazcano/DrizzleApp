@@ -142,7 +142,6 @@ public class UserPool {
             return;
         }
 
-
         List<Group> filteredList = new LinkedList<>();
         Group closestGroup = group_list.get(0); //  closest group in list. COMPILER WHINES IF UNINITIALIZED.
         double cGroupIndex = -1; // similarity index for closest group.
