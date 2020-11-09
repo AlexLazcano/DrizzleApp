@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                            Dialog dialog = new Dialog(LoginActivity.this);
                            dialog.setContentView(R.layout.verify_popup);
                            final EditText inputVerify = dialog.findViewById(R.id.inputVerify);
-                           EditText btnVerify = dialog.findViewById(R.id.btnVerify);
+                           Button btnVerify = dialog.findViewById(R.id.btnVerify);
                            btnVerify.setOnClickListener(new View.OnClickListener() {
                                                             @Override
                                                             public void onClick(View v) {
