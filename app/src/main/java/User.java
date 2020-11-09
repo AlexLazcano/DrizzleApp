@@ -3,7 +3,7 @@ import java.util.List;
 
 /**
  * user class will store the information of the user
- * @author Haoyuan Zhao
+ * @author Haoyuan Zhao & Markus Mattila
  * @version 1
  * @since 2020-11-6
  */
@@ -191,5 +191,24 @@ public class User {
             System.out.println( "Group name " + myGroup.get(i).getGroupName() +
                                 "\nGroup Id " + myGroup.get(i).getGroupId()+"\n");
         }
+    }
+
+    /**
+     * Produce a numerical value representing similarity between users. Simplified, for now.
+     */
+    public double simIndex(User compareTo)
+    {
+        final int NUM_OF_REL_ATTS = 6;
+        float index = 0;
+
+        if (major == compareTo.getMajor()) index++;
+        if (minor == compareTo.getMinor()) index++;
+        if (personality == compareTo.getPersonality()) index++; //SLOPPY. Change later?
+        if (major == compareTo.getMajor()) index++;
+        if (minor == compareTo.getMinor()) index++;
+        if (school == compareTo.getSchool()) index++;
+        if (favPastClass == compareTo.getFavPastClass()) index++;
+
+        return index / NUM_OF_REL_ATTS;
     }
 }
