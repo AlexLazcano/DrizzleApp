@@ -1,3 +1,5 @@
+package com.example.Drizzle;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -167,7 +169,7 @@ public class User {
      * print user information, only for test
      */
     public void printUserInfo(){
-        System.out.println("User name: " + name +
+        System.out.println("com.example.Drizzle.User name: " + name +
                             "\nUserId: "+ userId +
                             "\nPostal code: "+ postalCode +
                             "\nGender: "+ gender +
@@ -188,8 +190,8 @@ public class User {
     public void printMyGroupInfo(){
         System.out.println(this.getName() + " have " + this.myGroup.size() + " groups:\n");
         for ( int i = 0; i < this.myGroup.size(); ++i) {
-            System.out.println( "Group name " + myGroup.get(i).getGroupName() +
-                                "\nGroup Id " + myGroup.get(i).getGroupId()+"\n");
+            System.out.println( "com.example.Drizzle.Group name " + myGroup.get(i).getGroupName() +
+                                "\ncom.example.Drizzle.Group Id " + myGroup.get(i).getGroupId()+"\n");
         }
     }
 

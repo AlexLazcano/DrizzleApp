@@ -1,3 +1,5 @@
+package com.example.Drizzle;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,8 +14,8 @@ public class Group {
     private int groupId;
     private String groupName;
     private List<User> groupMember;
-    private String size; // size (small, medium or large) of the Group.
-    private String studyTopic; // topic of study for the Group.
+    private String size; // size (small, medium or large) of the com.example.Drizzle.Group.
+    private String studyTopic; // topic of study for the com.example.Drizzle.Group.
 
     /**
      * constructor: build the list of user and add this group
@@ -26,7 +28,7 @@ public class Group {
         this.groupMember = new LinkedList<>();
 
         if (size == "small" || size == "medium" || size == "large")
-            this.size = size; // the allocated size for the Group. So, small, medium or large.
+            this.size = size; // the allocated size for the com.example.Drizzle.Group. So, small, medium or large.
         else
             this.size = "unspecified"; // no or invalid specified size.
 
@@ -162,10 +164,10 @@ public class Group {
      * print group information, only for test
      */
     public void printGroupInfo(){
-        System.out.println("Group name: " + groupName + "\nGroup size :" + this.getGroupCount() + "\nThis group has " +
+        System.out.println("com.example.Drizzle.Group name: " + groupName + "\ncom.example.Drizzle.Group size :" + this.getGroupCount() + "\nThis group has " +
                 "following members:");
         for( int i = 0; i < this.getGroupCount(); ++i){
-            System.out.println( (i+1) + "th:\nUser name: " + this.groupMember.get(i).getName() + "\n" );
+            System.out.println( (i+1) + "th:\ncom.example.Drizzle.User name: " + this.groupMember.get(i).getName() + "\n" );
         }
     }
 }

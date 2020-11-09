@@ -1,8 +1,10 @@
+package com.example.Drizzle;
+
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * User pool class will manege the list of users and groups
+ * com.example.Drizzle.User pool class will manege the list of users and groups
  * @author Haoyuan Zhao & Markus Mattila
  * @version 1
  * @since 2020-11-6
@@ -133,7 +135,7 @@ public class UserPool {
 
         if (newUser == null)
         {
-            System.out.println( "User ID not found. Aborting match process...");
+            System.out.println( "com.example.Drizzle.User ID not found. Aborting match process...");
             return;
         }
         else if (!(groupSize == "small" || groupSize == "medium" || groupSize == "large"))
@@ -188,7 +190,7 @@ public class UserPool {
             return;
         }
 
-        Group newGroup = new Group(this, "New Group", 0, groupSize, studyTopic); // no groups good enough. create a new one.
+        Group newGroup = new Group(this, "New com.example.Drizzle.Group", 0, groupSize, studyTopic); // no groups good enough. create a new one.
     }
 
 }
