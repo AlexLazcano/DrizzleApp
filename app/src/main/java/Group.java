@@ -3,7 +3,7 @@ import java.util.List;
 
 /**
  * group class will store the information of the group
- * @author Haoyuan Zhao
+ * @author Haoyuan Zhao & Markus Mattila
  * @version 1
  * @since 2020-11-6
  */
@@ -12,16 +12,27 @@ public class Group {
     private int groupId;
     private String groupName;
     private List<User> groupMember;
+    private String size; // size (small, medium or large) of the Group.
+    private String studyTopic; // topic of study for the Group.
 
     /**
      * constructor: build the list of user and add this group
      * into group list
      * @param newPool the pool be added to
      */
-    public Group(UserPool newPool, String groupName, int groupId) {
+    public Group(UserPool newPool, String groupName, int groupId, String size, String studyTopic) {
         this.groupName = groupName;
         this.groupId = groupId;
         this.groupMember = new LinkedList<>();
+
+        if (size == "small" || size == "medium" || size == "large")
+            this.size = size; // the allocated size for the Group. So, small, medium or large.
+        else
+            this.size = "unspecified"; // no or invalid specified size.
+
+        // input verification for study topic? we need a bank of options that are considered acceptable topics.
+        this.studyTopic = studyTopic; // the allocated study topic. For instance, "mathematics."
+
         newPool.addGroup(this);
     }
 
@@ -96,8 +107,40 @@ public class Group {
      * count the member in this group
      * @return  the number of the member
      */
-    public int groupSize(){
+    public int getGroupCount(){
         return groupMember.size();
+    }
+
+    public String getGroupSize() // no corresponding setter.
+    {
+        return size;
+    }
+
+    public String getStudyTopic() // no corresponding setter.
+    {
+        return studyTopic;
+    }
+
+    /**
+     Test to see if the group is full as per specification of small, medium and large.
+     */
+    public boolean isFull()
+    {
+        final int S_MAX = 3, M_MAX = 5, L_MAX = 8;
+
+        return ((size == "small") && (groupMember.size() == S_MAX)) ||
+                ((size == "medium") && (groupMember.size() == M_MAX)) ||
+                ((size == "large") && (groupMember.size() == L_MAX)); // sloppy.
+    }
+
+    /** Return member at specific index in group
+     * @return member at specific index in group.
+     */
+    public User getGroupMember(int index)
+    {
+        if (index >= 0 && index < groupMember.size())
+            return groupMember.get(index);
+        return null;
     }
 
     /**
@@ -106,7 +149,7 @@ public class Group {
      * @return the index of the user(index for the user list in this group), return -1 if not find
      */
     private int memberSearch(int userId){
-        for( int i = 0 ; i < this.groupSize(); ++i){
+        for( int i = 0 ; i < this.getGroupCount(); ++i){
             if ( this.groupMember.get(i).getUserId() == userId) {
                 return i;
             }
@@ -114,13 +157,14 @@ public class Group {
         return -1;
     }
 
+
     /**
      * print group information, only for test
      */
     public void printGroupInfo(){
-        System.out.println("Group name: " + groupName + "\nGroup size :" + this.groupSize() + "\nThis group has " +
+        System.out.println("Group name: " + groupName + "\nGroup size :" + this.getGroupCount() + "\nThis group has " +
                 "following members:");
-        for( int i = 0; i < this.groupSize(); ++i){
+        for( int i = 0; i < this.getGroupCount(); ++i){
             System.out.println( (i+1) + "th:\nUser name: " + this.groupMember.get(i).getName() + "\n" );
         }
     }
