@@ -1,6 +1,7 @@
 package com.example.Drizzle;
+import android.service.autofill.AutofillService;
 
-
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,15 +19,14 @@ public class forTest {
         userList.get(2).setName("Bill");
         userList.get(3).setName("Jack");
 
-
         Group group1 = new Group(newPool,"Amazing group",101,"small","mathematics");
         Group group2 = new Group(newPool,"Sunday group",102,"small", "physics");
 
         group1.addMember(userList.get(0));
         group1.addMember(userList.get(3));
         group2.addMember(userList.get(0));
-        group2.addMember(userList.get(2));
         group2.addMember(userList.get(1));
+        group2.addMember(userList.get(2));
 
         newPool.printAllInfo();
 
