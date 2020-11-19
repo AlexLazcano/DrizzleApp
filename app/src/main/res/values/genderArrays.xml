@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="School">
+        <item>University of Toronto</item>
+        <item>University of British Columbia</item>
+        <item>McGill University</item>
+        <item>McMaster University</item>
+        <item>University of Montreal</item>
+        <item>University of Alberta</item>
+        <item>University of Ottawa</item>
+        <item>University of Calgary</item>
+        <item>University of Waterloo</item>
+        <item>Western University - Canada</item>
+        <item>Dalhousie University</item>
+        <item>Laval University</item>
+        <item>Queen&#180;s University</item>
+        <item>University of Manitoba</item>
+        <item>Simon Fraser University</item>
+        <item>University of Victoria, British Columbia</item>
+        <item>University of Saskatchewan</item>
+        <item>York University</item>
+        <item>York University</item>
+        <item>Memorial University of Newfoundland</item>
+    </string-array>
+
+    <string-array name="Major">
+        <item>Business and Management</item>
+        <item>Nursing</item>
+        <item>Psychology</item>
+        <item>Biology</item>
+        <item>Engineering</item>
+        <item>Education</item>
+        <item>Communications</item>
+        <item>Finance and Accounting</item>
+        <item>Criminal Justice</item>
+        <item>Anthropology and Sociology</item>
+        <item>Computer Science</item>
+    </string-array>
+
+    <string-array name="Minor">
+        <item>None</item>
+        <item>Business and Management</item>
+        <item>Nursing</item>
+        <item>Psychology</item>
+        <item>Biology</item>
+        <item>Engineering</item>
+        <item>Education</item>
+        <item>Communications</item>
+        <item>Finance and Accounting</item>
+        <item>Criminal Justice</item>
+        <item>Anthropology and Sociology</item>
+        <item>Computer Science</item>
+    </string-array>
+
+</resources>

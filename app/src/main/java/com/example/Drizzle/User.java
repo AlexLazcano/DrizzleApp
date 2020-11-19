@@ -1,5 +1,14 @@
+package com.example.Drizzle;
+
+import android.content.Context;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.example.Drizzle.MainActivity.getAppContext;
 
 /**
  * user class will store the information of the user
@@ -12,25 +21,25 @@ public class User {
     private String name;
     private int userId;
     private List<Group> myGroup;
-
     private String postalCode;
-
-    private boolean gender;
+    private String gender;
     //private int transportation;
-    private int major;
-    private int minor;
+    private String major;
+    private String minor;
     private int personality;
     private List<String> currentClassed;
     private String biography;
     private float rating;
     private String school;
     private List<String> favPastClass;
+    private List<User> friendList;
 
     //constructor:
     public User(UserPool newPool){
         this.myGroup = new LinkedList<>();
         this.currentClassed = new LinkedList<>();
         this.favPastClass = new LinkedList<>();
+        this.friendList = new LinkedList<>();
         newPool.addUser(this);
     }
 
@@ -47,15 +56,15 @@ public class User {
         return postalCode;
     }
 
-    public boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public int getMajor() {
+    public String getMajor() {
         return major;
     }
 
-    public int getMinor() {
+    public String getMinor() {
         return minor;
     }
 
@@ -100,15 +109,15 @@ public class User {
         this.postalCode = postalCode;
     }
 
-    public void setGender(boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public void setMajor(int major) {
+    public void setMajor(String major) {
         this.major = major;
     }
 
-    public void setMinor(int minor) {
+    public void setMinor(String minor) {
         this.minor = minor;
     }
 
@@ -162,7 +171,6 @@ public class User {
         return;
     }
 
-
     /**
      * print user information, only for test
      */
@@ -193,6 +201,26 @@ public class User {
         }
     }
 
+
+    public int writeToLocal(String fileName){
+        try{
+            OutputStreamWriter outputSW = new OutputStreamWriter(getAppContext().openFileOutput("User.txt",Context.MODE_PRIVATE));
+            outputSW.write(name + "\n" +
+                            gender + "\n" +
+                            school + "\n" +
+                            major + "\n" +
+                            minor + "\n" +
+                            postalCode + "\n");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return 0;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return 0;
+        }
+        return 1;
+    }
+
     /**
      * Produce a numerical value representing similarity between users. Simplified, for now.
      */
@@ -201,14 +229,37 @@ public class User {
         final int NUM_OF_REL_ATTS = 6;
         float index = 0;
 
-        if (major == compareTo.getMajor()) index++;
-        if (minor == compareTo.getMinor()) index++;
+        if (major.equals(compareTo.getMajor())) index++;
+        if (minor.equals(compareTo.getMinor())) index++;
         if (personality == compareTo.getPersonality()) index++; //SLOPPY. Change later?
-        if (major == compareTo.getMajor()) index++;
-        if (minor == compareTo.getMinor()) index++;
-        if (school == compareTo.getSchool()) index++;
+        if (major.equals(compareTo.getMajor())) index++;
+        if (minor.equals(compareTo.getMinor())) index++;
+        if (school.equals(compareTo.getSchool())) index++;
         if (favPastClass == compareTo.getFavPastClass()) index++;
 
         return index / NUM_OF_REL_ATTS;
     }
+
+    public int addFriend(User newFriend){
+        if (!this.friendList.contains(newFriend)){
+            this.friendList.add(newFriend);
+            newFriend.addFriend(this);
+            return 1;
+        }
+        return 0;
+    }
+
+    public int removeFriend(User rmvFriend){
+        if (this.friendList.contains(rmvFriend)){
+            this.friendList.remove(rmvFriend);
+            rmvFriend.removeFriend(this);
+            return 1;
+        }
+        return 0;
+    }
+
+    public List<User> getFriendList() {
+        return friendList;
+    }
+
 }

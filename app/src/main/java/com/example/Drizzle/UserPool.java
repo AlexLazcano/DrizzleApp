@@ -1,3 +1,5 @@
+package com.example.Drizzle;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -142,18 +144,24 @@ public class UserPool {
             return;
         }
 
+
+        List<Group> filteredList = new LinkedList<>();
         Group closestGroup = group_list.get(0); //  closest group in list. COMPILER WHINES IF UNINITIALIZED.
         double cGroupIndex = -1; // similarity index for closest group.
         double tempIndex = 0;  // similarity index for comparison.
         double minMatch = 0.75; // so... this is our arbitrary starting minimum for matching groups. Change if necessary.
-        final double MATCH_SUB = 0.01; // decrease incremement.
-        final long SLEEP_TIME = 30; // seconds spent in between searches, in seconds.
-        final double LOW_BOUND = 0.5; // lowest possible match index.
 
-        for (int i = 0; i < group_list.size(); i++) // removes all groups that are not correctly sized, studying same topic or are full.
+        final double MATCH_SUB = 0.01; // decrease incremement.
+        final double LOW_BOUND = 0.50; // lowest possible match index.
+        final long SLEEP_TIME = 30; // seconds spent in between searches, in seconds.
+
+        for (int i = 0; i < group_list.size(); i++)
+            filteredList.add(group_list.get(i)); // because we don't want to modify the original list.
+
+        for (int j = 0; j < filteredList.size(); j++) // removes all groups that are not correctly sized, studying same topic or are full.
         {
-            if ((group_list.get(i).getGroupSize() != groupSize) || (group_list.get(i).getStudyTopic() != studyTopic) || group_list.get(i).isFull())
-                group_list.remove(i);
+            if ((filteredList.get(j).getGroupSize() != groupSize) || (filteredList.get(j).getStudyTopic() != studyTopic) || filteredList.get(j).isFull())
+                filteredList.remove(j);
         }
 
         int k = 0; // loop counter.
@@ -165,16 +173,16 @@ public class UserPool {
                 minMatch -= k * MATCH_SUB; // lower minimum match index each
             }
 
-            for (int i = 0; i < group_list.size(); i++)
+            for (int i = 0; i < filteredList.size(); i++)
             {
                 tempIndex = 0;
-                for (int j = 0; j < group_list.get(i).getGroupCount(); j++) // O(n^2). may be slow... V1, though... Right?
-                    tempIndex += group_list.get(i).getGroupMember(j).simIndex(newUser);
+                for (int j = 0; j < filteredList.get(i).getGroupCount(); j++) // O(n^2). may be slow... V1, though... Right?
+                    tempIndex += filteredList.get(i).getGroupMember(j).simIndex(newUser);
 
-                tempIndex /= group_list.get(i).getGroupCount();
+                tempIndex /= filteredList.get(i).getGroupCount();
                 if (tempIndex > cGroupIndex)
                 {
-                    closestGroup = group_list.get(i); // better group found: set as best.
+                    closestGroup = filteredList.get(i); // better group found: set as best.
                     cGroupIndex = tempIndex; // set index as highest - basis for comparison, next loop.
                 }
             }
@@ -190,5 +198,6 @@ public class UserPool {
 
         Group newGroup = new Group(this, "New Group", 0, groupSize, studyTopic); // no groups good enough. create a new one.
     }
-
 }
+
+
