@@ -2,15 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="Groups"
+
+    <item
         android:id="@+id/secondFragment"
         android:icon="@drawable/ic_baseline_insert_emoticon_24"
+        android:title="Friends"
 
         />
-    <item android:title="Home"
-    android:id="@+id/firstFragment"
-    android:icon="@drawable/ic_baseline_home_24"
-    />
+    <item
+        android:id="@+id/firstFragment"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home" />
     <item android:title="Settings"
         android:id="@+id/thirdFragment"
         android:icon="@drawable/ic_baseline_group_24"

@@ -6,4 +6,29 @@
     <string name="first">First Fragment</string>
     <string name="second">second Fragment</string>
     <string name="third">third Fragment</string>
+
+    <string-array name="group_titles">
+        <item>Group 1</item>
+        <item>Group 2</item>
+        <item>Group 3</item>
+        <item>Group 4</item>
+        <item>Group 5</item>
+        <item>Group 6</item>
+        <item>Group 7</item>
+        <item>Group 8</item>
+        <item>Group 9</item>
+    </string-array>
+
+    <string-array name="group_desc">
+        <item>Description 1</item>
+        <item>Description 2</item>
+        <item>Description 3</item>
+        <item>Description 4</item>
+        <item>Description 5</item>
+        <item>Description 6</item>
+        <item>Description 7</item>
+        <item>Description 8</item>
+        <item>Description 9</item>
+    </string-array>
+
 </resources>
