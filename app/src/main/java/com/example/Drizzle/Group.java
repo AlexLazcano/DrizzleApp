@@ -27,7 +27,7 @@ public class Group {
         this.groupId = groupId;
         this.groupMember = new LinkedList<>();
 
-        if (size == "small" || size == "medium" || size == "large")
+        if (size.equals("small") || size.equals("medium") || size.equals("large"))
             this.size = size; // the allocated size for the Group. So, small, medium or large.
         else
             this.size = "unspecified"; // no or invalid specified size.

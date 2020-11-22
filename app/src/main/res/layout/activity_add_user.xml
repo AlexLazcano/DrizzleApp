@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity_addUser">
 
     <Spinner
         android:id="@+id/spinner_minor"
@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:entries="@array/Minor"
         app:layout_constraintBottom_toBottomOf="@+id/textView_School3"
-        app:layout_constraintStart_toEndOf="@+id/textView_School3"
+        app:layout_constraintStart_toEndOf="@+id/textView_name"
         app:layout_constraintTop_toTopOf="@+id/textView_School3" />
 
     <TextView
@@ -73,12 +73,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" />
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -103,28 +97,8 @@
         android:layout_marginStart="16dp"
         android:entries="@array/Gender"
         app:layout_constraintBottom_toBottomOf="@+id/textView_Gender"
-        app:layout_constraintStart_toEndOf="@+id/textView_Gender"
-        app:layout_constraintTop_toTopOf="@+id/textView_Gender" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInput_name"
-        android:layout_width="209dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:hint=""
-        app:layout_constraintBottom_toBottomOf="@+id/textView_name"
         app:layout_constraintStart_toEndOf="@+id/textView_name"
-        app:layout_constraintTop_toTopOf="@+id/textView_name" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInput_postalCode"
-        android:layout_width="209dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:hint=""
-        app:layout_constraintBottom_toBottomOf="@+id/textView_School4"
-        app:layout_constraintStart_toEndOf="@+id/textView_School4"
-        app:layout_constraintTop_toTopOf="@+id/textView_School4" />
+        app:layout_constraintTop_toTopOf="@+id/textView_Gender" />
 
     <Spinner
         android:id="@+id/spinner_school"
@@ -133,7 +107,7 @@
         android:layout_marginStart="16dp"
         android:entries="@array/School"
         app:layout_constraintBottom_toBottomOf="@+id/textView_School2"
-        app:layout_constraintStart_toEndOf="@+id/textView_School2"
+        app:layout_constraintStart_toEndOf="@+id/textView_name"
         app:layout_constraintTop_toTopOf="@+id/textView_School2" />
 
     <Spinner
@@ -143,17 +117,41 @@
         android:layout_marginStart="16dp"
         android:entries="@array/Major"
         app:layout_constraintBottom_toBottomOf="@+id/textView_School"
-        app:layout_constraintStart_toEndOf="@+id/textView_School"
+        app:layout_constraintStart_toEndOf="@+id/textView_name"
         app:layout_constraintTop_toTopOf="@+id/textView_School" />
 
     <Button
-        android:id="@+id/button_submit"
+        android:id="@+id/button_submit_addUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
+        android:focusableInTouchMode="false"
+        android:onClick="addUserToCloud"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/plainText_user_name"
+        android:layout_width="209dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_name"
+        app:layout_constraintStart_toEndOf="@+id/textView_name"
+        app:layout_constraintTop_toTopOf="@+id/textView_name" />
+
+    <EditText
+        android:id="@+id/plainText_postal_code"
+        android:layout_width="209dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_School4"
+        app:layout_constraintStart_toEndOf="@+id/textView_name"
+        app:layout_constraintTop_toTopOf="@+id/textView_School4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

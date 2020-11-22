@@ -1,14 +1,7 @@
 package com.example.Drizzle;
 
-import android.content.Context;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.example.Drizzle.MainActivity.getAppContext;
 
 /**
  * user class will store the information of the user
@@ -199,26 +192,6 @@ public class User {
             System.out.println( "Group name " + myGroup.get(i).getGroupName() +
                                 "\nGroup Id " + myGroup.get(i).getGroupId()+"\n");
         }
-    }
-
-
-    public int writeToLocal(String fileName){
-        try{
-            OutputStreamWriter outputSW = new OutputStreamWriter(getAppContext().openFileOutput("User.txt",Context.MODE_PRIVATE));
-            outputSW.write(name + "\n" +
-                            gender + "\n" +
-                            school + "\n" +
-                            major + "\n" +
-                            minor + "\n" +
-                            postalCode + "\n");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return 0;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return 0;
-        }
-        return 1;
     }
 
     /**

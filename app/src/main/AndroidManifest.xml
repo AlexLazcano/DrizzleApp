@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Testing">
+        <activity android:name=".activity_addGroup"
+            android:exported="true">
+        </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity_addUser"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Testing.NoActionBar">
             <intent-filter>
