@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Testing">
-        <activity android:name=".groupsActivity"></activity>
+        <activity android:name=".GroupInfoActivity"
+            android:parentActivityName=".GroupsActivity"
+            android:label="details"></activity>
+        <activity android:name=".GroupsActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

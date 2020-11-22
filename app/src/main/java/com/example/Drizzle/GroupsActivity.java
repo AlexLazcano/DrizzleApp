@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-public class groupsActivity extends AppCompatActivity {
+public class GroupsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     String s1[], s2[];
 

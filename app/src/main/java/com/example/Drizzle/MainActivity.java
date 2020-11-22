@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void openGroups(View view) {
-        Intent intent = new Intent(this, groupsActivity.class);
+        Intent intent = new Intent(this, GroupsActivity.class);
         startActivity(intent);
 
         }
