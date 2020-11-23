@@ -1,3 +1,10 @@
+/**
+ * Home fragment class in which a user can start searching for a new group.
+ * @author Markus Mattila & Alexis Lazcano
+ * @version 2
+ * @since 2020-11-22
+ */
+
 package com.example.Drizzle;
 
 import android.os.Bundle;
@@ -26,15 +33,17 @@ public class HomeFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Button searchBtn = view.findViewById(R.id.findGroupBtn);
-        TextView statusText = view.findViewById(R.id.searchingStatus);
-        TextView userName = view.findViewById(R.id.userName);
+        Button searchBtn = view.findViewById(R.id.findGroupBtn); // the main button for initiating search algorithm.
+
+        TextView statusText = view.findViewById(R.id.searchingStatus); // the text with the searching algorithm's status.
+        TextView userName = view.findViewById(R.id.userName); // for the name with which one is greeted.
+
         RadioGroup group1 = view.findViewById(R.id.groupSizeRadioGroup); // for the size radio buttons.
         RadioGroup group2 = view.findViewById(R.id.groupSubjectRadioGroup); // for the subject radio buttons.
 
         // TODO: userName.setText("Welcome, " + (the user's name?') + "!"); ... need to figure out as to how this information will be obtained.
 
-        // TODO: createGroupSizeRadioButtons();... would be nicer as a function.
+        // TODO: "createGroupSizeRadioButtons(). createGroupSubjectRadioButtons()"... would be nicer as a function.
 
         String[] groupSizes = getResources().getStringArray(R.array.group_size);
 
@@ -73,8 +82,6 @@ public class HomeFragment extends Fragment {
 
             group2.addView(subjectRadioButton);
         }
-
-        // TODO: Create some form of widget for your preferred study subject, for the search. Remember, we need the subject and group size!
 
         searchBtn.setOnClickListener(new View.OnClickListener() { // what to do when searchBtn is pressed.
             @Override
