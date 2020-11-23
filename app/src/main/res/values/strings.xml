@@ -31,4 +31,29 @@
         <item>Description 9</item>
     </string-array>
 
+    <string-array name="firstNamesFriend">
+        <item>First 1</item>
+        <item>First 2</item>
+        <item>First 3</item>
+        <item>First 4</item>
+        <item>First 5</item>
+        <item>First 6</item>
+        <item>First 7</item>
+        <item>First 8</item>
+        <item>First 9</item>
+    </string-array>
+    <string-array name="secondNamesFriend">
+        <item>Second 1</item>
+        <item>Second 2</item>
+        <item>Second 3</item>
+        <item>Second 4</item>
+        <item>Second 5</item>
+        <item>Second 6</item>
+        <item>Second 7</item>
+        <item>Second 8</item>
+        <item>Second 9</item>
+    </string-array>
+
+
+
 </resources>

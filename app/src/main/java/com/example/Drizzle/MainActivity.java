@@ -36,15 +36,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navController);*/
 
 
-
-
-
     }
-
-
-    public void openGroups(View view) {
-        Intent intent = new Intent(this, GroupsActivity.class);
-        startActivity(intent);
-
-        }
 }
+
+

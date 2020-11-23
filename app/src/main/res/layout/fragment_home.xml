@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".HomeFragment">
 
     <TextView
         android:id="@+id/textView5"
@@ -29,16 +29,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="296dp"
-        android:text="View Groups"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        android:onClick="openGroups"
-        tools:ignore="OnClick" />
 </androidx.constraintlayout.widget.ConstraintLayout>

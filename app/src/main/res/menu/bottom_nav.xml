@@ -13,8 +13,10 @@
         android:id="@+id/firstFragment"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home" />
-    <item android:title="Settings"
-        android:id="@+id/thirdFragment"
+
+
+    <item android:title="Groups"
+        android:id="@+id/groupFragment"
         android:icon="@drawable/ic_baseline_group_24"
         />
 </menu>
