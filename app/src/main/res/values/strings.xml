@@ -15,6 +15,16 @@
     <string name="subject_to_study">Subject to Study:</string>
     <string name="group_size">Group Size:</string>
 
+    <string name="titleWiz">Let us get to know you</string>
+    <string name="Name">Name</string>
+    <string name="Postal">Postal Code</string>
+    <string name="Gender1">Male</string>
+    <string name="Gender2">Female</string>
+    <string name="Gender3">Other</string>
+    <string name="Major">Major</string>
+    <string name="Minor">Minor</string>
+    <string name="personalityT">Personality Traits</string>
+
     <string-array name="group_titles">
         <item>Group 1</item>
         <item>Group 2</item>
