@@ -17,7 +17,8 @@ public class HomeFragment extends Fragment {
 
     private View view;
     private int numOfClicks = 0; // for the button.
-    String selectedSize;
+    String selectedSize; // selected size on home radiobutton
+    String selectedSubject; // selected subject on home radiobutton.
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,7 +29,8 @@ public class HomeFragment extends Fragment {
         Button searchBtn = view.findViewById(R.id.findGroupBtn);
         TextView statusText = view.findViewById(R.id.searchingStatus);
         TextView userName = view.findViewById(R.id.userName);
-        RadioGroup group = view.findViewById(R.id.groupSizeRadioGroup); // for the radio buttons.
+        RadioGroup group1 = view.findViewById(R.id.groupSizeRadioGroup); // for the size radio buttons.
+        RadioGroup group2 = view.findViewById(R.id.groupSubjectRadioGroup); // for the subject radio buttons.
 
         // TODO: userName.setText("Welcome, " + (the user's name?') + "!"); ... need to figure out as to how this information will be obtained.
 
@@ -50,7 +52,26 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-            group.addView(sizeRadioBtn);
+            group1.addView(sizeRadioBtn);
+        }
+
+        String[] studySubjects = getResources().getStringArray(R.array.study_subject);
+
+        for (int i = 0; i < studySubjects.length; i++) {
+            String studySubject = studySubjects[i];
+
+            RadioButton subjectRadioButton = new RadioButton(getContext()); // getContext(): correct? total guess.
+            subjectRadioButton.setText(studySubject);                          // seems to work...
+
+            subjectRadioButton.setOnClickListener(new View.OnClickListener() { // what to do when a RadioButton is pressed. TODO: FIX. DOES NOT WORK.
+                @Override
+                public void onClick(View v) {
+                    selectedSubject = studySubject;
+                    Log.i("Drizzle", selectedSubject);
+                }
+            });
+
+            group2.addView(subjectRadioButton);
         }
 
         // TODO: Create some form of widget for your preferred study subject, for the search. Remember, we need the subject and group size!
