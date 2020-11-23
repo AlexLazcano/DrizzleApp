@@ -8,8 +8,10 @@
     <string name="third">third Fragment</string>
     <string name="not_currently_searching">Not currently searching.</string>
     <string name="find_my_group">Find My Group</string>
-    <string name="welcome_name">Welcome name</string>
+    <string name="welcome_name">Welcome, Name!</string>
     <string name="home">Home</string>
+    <string name="searching_button_line">Searching for your perfect study group...</string>
+    <string name="not_searching_button_line">Not currently searching.</string>
 
     <string-array name="group_titles">
         <item>Group 1</item>
