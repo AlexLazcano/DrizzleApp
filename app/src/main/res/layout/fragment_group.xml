@@ -68,5 +68,13 @@
         app:layout_constraintHorizontal_bias="0.244"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/groupNameRedo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="167dp"
+        tools:layout_editor_absoluteY="169dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

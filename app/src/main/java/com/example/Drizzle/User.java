@@ -11,7 +11,7 @@ import java.util.List;
 
 public class User {
     private String name;
-    private int userId;
+    private String userId;
     private List<Group> myGroup;
 
     private String postalCode;
@@ -40,7 +40,7 @@ public class User {
     public String getName() {
         return name;
     }
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
@@ -93,7 +93,7 @@ public class User {
         this.name = name;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

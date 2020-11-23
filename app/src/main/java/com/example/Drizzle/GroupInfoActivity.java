@@ -3,14 +3,18 @@ package com.example.Drizzle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class GroupInfoActivity extends AppCompatActivity {
 
 
     TextView title, desc;
-    String data1, data2;
+    String data1, data2, user;
 
 
 
@@ -29,7 +33,9 @@ public class GroupInfoActivity extends AppCompatActivity {
 
     private void getData(){
         if(getIntent().hasExtra("data1") && getIntent().hasExtra("data2")){
-            data1 = getIntent().getStringExtra("data1");
+            //data1 = getIntent().getStringExtra("data1");
+            user = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            Log.d("userID", user);
             data2 = getIntent().getStringExtra("data2");
 
 
@@ -39,7 +45,7 @@ public class GroupInfoActivity extends AppCompatActivity {
 
     }
     private void setData(){
-        title.setText(data1);
+        title.setText(user);
         desc.setText(data2);
 
 
