@@ -66,7 +66,7 @@ public class activity_addGroup extends AppCompatActivity {
             public void onClick(View v) {
                 //Connect to the button and spinner
                 final EditText groupName = (EditText)findViewById(R.id.plainText_group_name);
-                final Spinner groupSize = (Spinner) findViewById(R.id.spinner_groupSize);
+                final Spinner groupSize = (Spinner)findViewById(R.id.spinner_groupSize);
                 final EditText studyTopic = (EditText)findViewById(R.id.plainText_study_topic);
 
                 //Set the path for this group using group ID

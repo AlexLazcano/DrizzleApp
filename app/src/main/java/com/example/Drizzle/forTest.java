@@ -20,20 +20,20 @@ public class forTest {
         Group group1 = new Group(newPool,"Amazing group",101,"small","mathematics");
         Group group2 = new Group(newPool,"Sunday group",102,"small", "physics");
 
-        group1.addMember(userList.get(0));
-        group1.addMember(userList.get(3));
-        group2.addMember(userList.get(0));
-        group2.addMember(userList.get(1));
-        group2.addMember(userList.get(2));
-
-        newPool.printAllInfo();
-
-        group1.quitGroup(userList.get(0));
-        newPool.writtenOff(userList.get(2).getUserId());
-
-        System.out.println("After the quit option:\n");
-
-        newPool.printAllInfo();
+//        group1.addMember(userList.get(0));
+//        group1.addMember(userList.get(3));
+//        group2.addMember(userList.get(0));
+//        group2.addMember(userList.get(1));
+//        group2.addMember(userList.get(2));
+//
+//        newPool.printAllInfo();
+//
+//        group1.quitGroup(userList.get(0));
+//        newPool.writtenOff(userList.get(2).getUserId());
+//
+//        System.out.println("After the quit option:\n");
+//
+//        newPool.printAllInfo();
 
     }
 

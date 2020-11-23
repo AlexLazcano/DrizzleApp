@@ -1,5 +1,9 @@
 package com.example.Drizzle;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +17,7 @@ import java.util.List;
 public class User {
     private String name;
     private int userId;
-    private List<Group> myGroup;
+    private List<Integer> myGroupId;
     private String postalCode;
     private String gender;
     //private int transportation;
@@ -25,11 +29,13 @@ public class User {
     private float rating;
     private String school;
     private List<String> favPastClass;
-    private List<User> friendList;
+    private List<Integer> friendList;
+
+    public User(){}
 
     //constructor:
     public User(UserPool newPool){
-        this.myGroup = new LinkedList<>();
+        this.myGroupId = new LinkedList<>();
         this.currentClassed = new LinkedList<>();
         this.favPastClass = new LinkedList<>();
         this.friendList = new LinkedList<>();
@@ -85,8 +91,8 @@ public class User {
         return favPastClass;
     }
 
-    public List<Group> getMyGroup() {
-        return myGroup;
+    public List<Integer> getMyGroup() {
+        return myGroupId;
     }
 
     //setter:
@@ -141,26 +147,24 @@ public class User {
     /**
      *  Add the group into this.mygroup, call addMember() for newGroup if
      *  newGroup.groupMember currently not contain this user
-     * @param newGroup target group
+     * @param newGroupId target group
      */
-    public void joinGroup(Group newGroup){
-        this.myGroup.add(newGroup);
-        if ( !newGroup.getGroupMember().contains(this)){
-            newGroup.addMember(this);
-        }
+    public void joinGroup(int newGroupId){
+        this.myGroupId.add(newGroupId);
+        DocumentReference userListGetter = FirebaseFirestore.getInstance().document("GroupList/"+newGroupId);
+        userListGetter.update("groupMember", FieldValue.arrayUnion(this.getUserId()));
         return;
     }
 
     /**
      *  remove the group from this.mygroup, call quitMember() for newGroup if
      *  newGroup.groupMember currently still contain this user
-     * @param newGroup target group
+     * @param newGroupId target group
      */
-    public void leaveGroup(Group newGroup){
-        this.myGroup.remove(newGroup);
-        if ( newGroup.getGroupMember().contains(this)){
-            newGroup.quitGroup(this);
-        }
+    public void leaveGroup(int newGroupId){
+        this.myGroupId.remove(newGroupId);
+        DocumentReference userListGetter = FirebaseFirestore.getInstance().document("GroupList/"+newGroupId);
+        userListGetter.update("groupMember", FieldValue.arrayRemove(this.getUserId()));
         return;
     }
 
@@ -183,16 +187,16 @@ public class User {
         return;
     }
 
-    /**
-     * print group information for this user, only for test
-     */
-    public void printMyGroupInfo(){
-        System.out.println(this.getName() + " have " + this.myGroup.size() + " groups:\n");
-        for ( int i = 0; i < this.myGroup.size(); ++i) {
-            System.out.println( "Group name " + myGroup.get(i).getGroupName() +
-                                "\nGroup Id " + myGroup.get(i).getGroupId()+"\n");
-        }
-    }
+//    /**
+//     * print group information for this user, only for test
+//     */
+//    public void printMyGroupInfo(){
+//        System.out.println(this.getName() + " have " + this.myGroupId.size() + " groups:\n");
+//        for ( int i = 0; i < this.myGroupId.size(); ++i) {
+//            System.out.println( "Group name " + myGroupId.get(i).getGroupName() +
+//                                "\nGroup Id " + myGroupId.get(i).getGroupId()+"\n");
+//        }
+//    }
 
     /**
      * Produce a numerical value representing similarity between users. Simplified, for now.
@@ -213,25 +217,21 @@ public class User {
         return index / NUM_OF_REL_ATTS;
     }
 
-    public int addFriend(User newFriend){
-        if (!this.friendList.contains(newFriend)){
-            this.friendList.add(newFriend);
-            newFriend.addFriend(this);
-            return 1;
-        }
-        return 0;
+    public int addFriend(int newFriendId){
+        this.friendList.add(newFriendId);
+        DocumentReference friendListGetter = FirebaseFirestore.getInstance().document("UserList/"+newFriendId);
+        friendListGetter.update("friendList", FieldValue.arrayUnion(this.getUserId()));
+        return 1;
     }
 
-    public int removeFriend(User rmvFriend){
-        if (this.friendList.contains(rmvFriend)){
-            this.friendList.remove(rmvFriend);
-            rmvFriend.removeFriend(this);
-            return 1;
-        }
-        return 0;
+    public int removeFriend(int rmvFriendId){
+        this.friendList.remove(rmvFriendId);
+        DocumentReference friendListGetter = FirebaseFirestore.getInstance().document("UserList/"+rmvFriendId);
+        friendListGetter.update("friendList", FieldValue.arrayRemove(this.getUserId()));
+        return 1;
     }
 
-    public List<User> getFriendList() {
+    public List<Integer> getFriendList() {
         return friendList;
     }
 

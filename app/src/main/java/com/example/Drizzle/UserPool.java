@@ -85,18 +85,18 @@ public class UserPool {
         return -1;
     }
 
-    /**
-     * Clean up this user, remove him from all groups he belonged to and
-     * remove this user from user pool
-     * @param userId the user's id
-     */
-    public void writtenOff(int userId){
-        for ( int i = 0; i < this.findUserById(userId).getMyGroup().size(); ++i){
-            this.findUserById(userId).getMyGroup().get(i).quitGroup(this.findUserById(userId));
-        }
-        this.user_list.remove(this.findUserById(userId));
-        return;
-    }
+//    /**
+//     * Clean up this user, remove him from all groups he belonged to and
+//     * remove this user from user pool
+//     * @param userId the user's id
+//     */
+//    public void writtenOff(int userId){
+//        for ( int i = 0; i < this.findUserById(userId).getMyGroup().size(); ++i){
+//            this.findUserById(userId).getMyGroup().get(i).quitGroup(this.findUserById(userId));
+//        }
+//        this.user_list.remove(this.findUserById(userId));
+//        return;
+//    }
 
     /**
      * search the user by user id
@@ -111,17 +111,17 @@ public class UserPool {
         return null;
     }
 
-    public void printAllInfo(){
-        System.out.println("Now user pool have " + this.numOfUsers() +" users, and " + this.numOfGroups() + " groups" +
-                "\nThe user information are shown as following:");
-        for( int i =0; i < user_list.size(); ++i){
-            this.user_list.get(i).printUserInfo();
-        }
-        System.out.println("The group information is shown as following:");
-        for( int i = 0 ; i < group_list.size(); ++i){
-            this.group_list.get(i).printGroupInfo();
-        }
-    }
+//    public void printAllInfo(){
+//        System.out.println("Now user pool have " + this.numOfUsers() +" users, and " + this.numOfGroups() + " groups" +
+//                "\nThe user information are shown as following:");
+//        for( int i =0; i < user_list.size(); ++i){
+//            this.user_list.get(i).printUserInfo();
+//        }
+//        System.out.println("The group information is shown as following:");
+//        for( int i = 0 ; i < group_list.size(); ++i){
+//            this.group_list.get(i).printGroupInfo();
+//        }
+//    }
 
     /**
      * Places a user into a corresponding (or new) group, as per similarities with existing groups. Requires refinement.
@@ -177,7 +177,7 @@ public class UserPool {
             {
                 tempIndex = 0;
                 for (int j = 0; j < filteredList.get(i).getGroupCount(); j++) // O(n^2). may be slow... V1, though... Right?
-                    tempIndex += filteredList.get(i).getGroupMember(j).simIndex(newUser);
+                    tempIndex += findUserById(filteredList.get(i).getGroupMember().get(j)).simIndex(newUser);
 
                 tempIndex /= filteredList.get(i).getGroupCount();
                 if (tempIndex > cGroupIndex)
@@ -192,7 +192,7 @@ public class UserPool {
 
         if (minMatch >= LOW_BOUND)
         {
-            closestGroup.addMember(newUser); // !!!
+            closestGroup.addMember(newUser.getUserId()); // !!!
             return;
         }
 
