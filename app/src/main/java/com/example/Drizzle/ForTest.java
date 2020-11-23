@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class forTest {
+public class ForTest {
     public static void main (String args[]){
         List<User> userList = new LinkedList<>();
         UserPool newPool = new UserPool();
