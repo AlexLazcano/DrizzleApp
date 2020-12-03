@@ -66,7 +66,7 @@ public class activity_addUser extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User newUser = new User(newPool);
+                User newUser = new User();
                 //Connect to the button and spinner
                 final EditText nameET = (EditText)findViewById(R.id.plainText_user_name);
                 final Spinner genderET = (Spinner)findViewById(R.id.spinner_gender);

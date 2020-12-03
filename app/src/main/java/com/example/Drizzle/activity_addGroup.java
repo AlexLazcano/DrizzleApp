@@ -73,7 +73,7 @@ public class activity_addGroup extends AppCompatActivity {
                 DocumentReference groupPath = FirebaseFirestore.getInstance().document("GroupList/"+Integer.toString(groupId));
 
                 //Get information from editText and spinner
-                Group newGroup = new Group(newPool,
+                Group newGroup = new Group(
                         groupName.getText().toString(),
                         groupId,
                         groupSize.getSelectedItem().toString(),

@@ -1,5 +1,7 @@
 package com.example.Drizzle;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,6 +15,8 @@ import java.util.List;
 public class UserPool {
     private List<User> user_list;
     private List<Group> group_list;
+    private String TAG = "UserPool";
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /**
      * Constructor:
@@ -22,6 +26,42 @@ public class UserPool {
         this.user_list = new LinkedList<>();
         this.group_list = new LinkedList<>();
     }
+
+//    public void pullAllDataFromCloud(){
+//        db.collection("UserList").get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                User tarUser = document.toObject(User.class);
+//                                User newUser = new User(tarUser);
+//
+//                            }
+//                        }
+//                        else{
+//                            Log.d(TAG,"Error getting User: ", task.getException());
+//                        }
+//                    }
+//                });
+//
+//        db.collection("GroupList").get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                Group tarGroup = document.toObject(Group.class);
+//                                group_list.add(tarGroup);
+//                            }
+//                        }
+//                        else{
+//                            Log.d(TAG,"Error getting Group: ", task.getException());
+//                        }
+//                    }
+//                });
+//    }
+
 
     /**
      * count the number of users
@@ -111,17 +151,36 @@ public class UserPool {
         return null;
     }
 
-//    public void printAllInfo(){
-//        System.out.println("Now user pool have " + this.numOfUsers() +" users, and " + this.numOfGroups() + " groups" +
-//                "\nThe user information are shown as following:");
-//        for( int i =0; i < user_list.size(); ++i){
-//            this.user_list.get(i).printUserInfo();
-//        }
-//        System.out.println("The group information is shown as following:");
-//        for( int i = 0 ; i < group_list.size(); ++i){
-//            this.group_list.get(i).printGroupInfo();
-//        }
-//    }
+    public void printAllInfo(){
+        System.out.println("Now user pool have " + this.numOfUsers() +" users, and " + this.numOfGroups() + " groups" +
+                "\nThe user information are shown as following:");
+        for( int i = 0; i < user_list.size(); ++i){
+            this.user_list.get(i).printUserInfo();
+        }
+        System.out.println("The group information is shown as following:");
+        for( int i = 0 ; i < group_list.size(); ++i){
+            this.group_list.get(i).printGroupInfo();
+        }
+    }
+
+    public String outPutAllInfo(){
+        String Info = "";
+        if (user_list.size() > 0){
+            Info += "Now user pool have " + this.numOfUsers() +" users,The user information are shown as following:\n";
+            for ( int i = 0; i < user_list.size(); ++i){
+                Info += user_list.get(i).outPutUserInfo();
+                Info += "\n";
+            }
+        }
+        if (group_list.size() > 0){
+            Info +=  "Now user pool have " + this.numOfGroups() +" groups,The group information are shown as following:\n";
+            for ( int i = 0; i < group_list.size(); ++i){
+                Info += group_list.get(i).outputGroupInfo();
+                Info += "\n";
+            }
+        }
+        return Info;
+    }
 
     /**
      * Places a user into a corresponding (or new) group, as per similarities with existing groups. Requires refinement.
@@ -196,7 +255,8 @@ public class UserPool {
             return;
         }
 
-        Group newGroup = new Group(this, "New Group", 0, groupSize, studyTopic); // no groups good enough. create a new one.
+        Group newGroup = new Group("New Group", 0, groupSize, studyTopic); // no groups good enough. create a new one.
+        this.addGroup(newGroup);
     }
 }
 

@@ -27,7 +27,7 @@ public class Group {
      * into group list
      * @param newPool the pool be added to
      */
-    public Group(UserPool newPool, String groupName, int groupId, String size, String studyTopic) {
+    public Group(String groupName, int groupId, String size, String studyTopic) {
         this.groupName = groupName;
         this.groupId = groupId;
         this.groupMemberId = new LinkedList<>();
@@ -40,7 +40,6 @@ public class Group {
         // input verification for study topic? we need a bank of options that are considered acceptable topics.
         this.studyTopic = studyTopic; // the allocated study topic. For instance, "mathematics."
 
-        newPool.addGroup(this);
     }
 
     /**
@@ -124,6 +123,22 @@ public class Group {
     public String getStudyTopic() // no corresponding setter.
     {
         return studyTopic;
+    }
+
+    public void printGroupInfo(){
+        System.out.println("Group name: " + groupName +
+                "\nGroupId: "+ groupId +
+                "\nMy member Id: "+ groupMemberId +
+                "\nSize: "+ size +
+                "\nStudy topic: "+ studyTopic +"\n");
+    }
+
+    public String outputGroupInfo(){
+        return "Group name: " + groupName +
+                "\nGroupId: "+ groupId +
+                "\nMy member Id: "+ groupMemberId +
+                "\nSize: "+ size +
+                "\nStudy topic: "+ studyTopic +"\n";
     }
 
     /**

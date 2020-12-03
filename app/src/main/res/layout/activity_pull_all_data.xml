@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_pullAllData">
+
+    <Button
+        android:id="@+id/button_pullAllUserData"
+        android:layout_width="155dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="80dp"
+        android:onClick="pullAllUserDataFromSever"
+        android:text="Pull All User Data"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_AllDataOutput"
+        android:layout_width="350dp"
+        android:layout_height="524dp"
+        android:layout_marginTop="32dp"
+        android:scrollbars="vertical"
+        android:singleLine="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_pullAllUserData" />
+
+    <Button
+        android:id="@+id/button_pullAllGroupData"
+        android:layout_width="155dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="32dp"
+        android:onClick="pullAllGroupDataFromSever"
+        android:text="Pull All Group Data"
+        app:layout_constraintBottom_toBottomOf="@+id/button_pullAllUserData"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_pullAllUserData" />
+</androidx.constraintlayout.widget.ConstraintLayout>

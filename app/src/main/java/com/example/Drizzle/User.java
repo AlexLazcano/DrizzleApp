@@ -31,15 +31,29 @@ public class User {
     private List<String> favPastClass;
     private List<Integer> friendList;
 
-    public User(){}
-
     //constructor:
-    public User(UserPool newPool){
+    public User(){
         this.myGroupId = new LinkedList<>();
         this.currentClassed = new LinkedList<>();
         this.favPastClass = new LinkedList<>();
         this.friendList = new LinkedList<>();
-        newPool.addUser(this);
+    }
+
+    public User(User user){
+        this.name = user.getName();
+        this.userId = user.getUserId();
+        this.myGroupId = user.getMyGroup();
+        this.postalCode = user.getPostalCode();
+        this.gender = user.getGender();
+        this.major = user.getMajor();
+        this.minor = user.getMinor();
+        this.personality = user.getPersonality();
+        this.currentClassed = user.getCurrentClassed();
+        this.biography = user.getBiography();
+        this.rating = user.getRating();
+        this.school = user.getSchool();
+        this.favPastClass = user.getFavPastClass();
+        this.friendList = user.getFriendList();
     }
 
     //getter:
@@ -174,6 +188,7 @@ public class User {
     public void printUserInfo(){
         System.out.println("User name: " + name +
                             "\nUserId: "+ userId +
+                            "\nMy Group Id: "+ myGroupId +
                             "\nPostal code: "+ postalCode +
                             "\nGender: "+ gender +
                             "\nMajor: "+ major +
@@ -184,7 +199,22 @@ public class User {
                             "\nRating: "+ rating +
                             "\nSchool: "+ school +
                             "\nFavourite past class: "+ favPastClass +"\n");
-        return;
+    }
+
+    public String outPutUserInfo(){
+        return "User name: " + name +
+                "\nUserId: "+ userId +
+                "\nMy Group Id: "+ myGroupId +
+                "\nPostal code: "+ postalCode +
+                "\nGender: "+ gender +
+                "\nMajor: "+ major +
+                "\nMinor: "+ minor +
+                "\nPersonality: "+ personality +
+                "\nCurrent enrolled classes: "+ currentClassed +
+                "\nBiography: "+ biography +
+                "\nRating: "+ rating +
+                "\nSchool: "+ school +
+                "\nFavourite past class: "+ favPastClass +"\n";
     }
 
 //    /**
