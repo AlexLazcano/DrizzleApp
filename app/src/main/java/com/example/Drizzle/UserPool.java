@@ -27,42 +27,6 @@ public class UserPool {
         this.group_list = new LinkedList<>();
     }
 
-//    public void pullAllDataFromCloud(){
-//        db.collection("UserList").get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if(task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                User tarUser = document.toObject(User.class);
-//                                User newUser = new User(tarUser);
-//
-//                            }
-//                        }
-//                        else{
-//                            Log.d(TAG,"Error getting User: ", task.getException());
-//                        }
-//                    }
-//                });
-//
-//        db.collection("GroupList").get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if(task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Group tarGroup = document.toObject(Group.class);
-//                                group_list.add(tarGroup);
-//                            }
-//                        }
-//                        else{
-//                            Log.d(TAG,"Error getting Group: ", task.getException());
-//                        }
-//                    }
-//                });
-//    }
-
-
     /**
      * count the number of users
      * @return the number of user

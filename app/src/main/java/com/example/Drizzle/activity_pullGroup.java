@@ -45,6 +45,7 @@ public class activity_pullGroup extends AppCompatActivity {
                                     "\nGroup Id: " + tarGroup.getGroupId()+
                                     "\nSize: " + tarGroup.getGroupSize(), Toast.LENGTH_LONG).show(); //...
                             //THIS IS JUST A EXAMPLE OF PULL USER
+                            //You can do other operations here...
                         }
                         else{
                             Toast.makeText(activity_pullGroup.this,"Group Id not found",Toast.LENGTH_SHORT ).show();

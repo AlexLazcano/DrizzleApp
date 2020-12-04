@@ -22,11 +22,8 @@ public class Group {
     private String studyTopic; // topic of study for the Group.
 
     public Group(){}
-    /**
-     * constructor: build the list of user and add this group
-     * into group list
-     * @param newPool the pool be added to
-     */
+
+
     public Group(String groupName, int groupId, String size, String studyTopic) {
         this.groupName = groupName;
         this.groupId = groupId;
@@ -89,10 +86,10 @@ public class Group {
      * @param newUserId the new member
      */
     public void addMember(int newUserId){
-        this.groupMemberId.add(newUserId);
-        DocumentReference groupListGetter = FirebaseFirestore.getInstance().document("UserList/"+newUserId);
-        groupListGetter.update("myGroup", FieldValue.arrayUnion(this.getGroupId()));
-        return;
+        DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+newUserId);
+        updateUserList.update("myGroupId", FieldValue.arrayUnion(this.getGroupId()));
+        DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+this.getGroupId());
+        updateGroupList.update("groupMemberId", FieldValue.arrayUnion(newUserId));
     }
 
     /**
@@ -101,10 +98,10 @@ public class Group {
      * @param quitUserId the user want to quit
      */
     public void quitGroup(int quitUserId){
-        this.groupMemberId.remove(quitUserId);
-        DocumentReference groupListGetter = FirebaseFirestore.getInstance().document("UserList/"+quitUserId);
-        groupListGetter.update("myGroup", FieldValue.arrayRemove(this.getGroupId()));
-        return;
+        DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+quitUserId);
+        updateUserList.update("myGroupId", FieldValue.arrayRemove(this.getGroupId()));
+        DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+this.getGroupId());
+        updateGroupList.update("groupMemberId", FieldValue.arrayRemove(quitUserId));
     }
 
     /**

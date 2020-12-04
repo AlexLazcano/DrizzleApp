@@ -164,10 +164,10 @@ public class User {
      * @param newGroupId target group
      */
     public void joinGroup(int newGroupId){
-        this.myGroupId.add(newGroupId);
-        DocumentReference userListGetter = FirebaseFirestore.getInstance().document("GroupList/"+newGroupId);
-        userListGetter.update("groupMember", FieldValue.arrayUnion(this.getUserId()));
-        return;
+        DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+this.getUserId());
+        updateUserList.update("myGroupId", FieldValue.arrayUnion(newGroupId));
+        DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+newGroupId);
+        updateGroupList.update("groupMemberId", FieldValue.arrayUnion(this.getUserId()));
     }
 
     /**
@@ -176,10 +176,10 @@ public class User {
      * @param newGroupId target group
      */
     public void leaveGroup(int newGroupId){
-        this.myGroupId.remove(newGroupId);
-        DocumentReference userListGetter = FirebaseFirestore.getInstance().document("GroupList/"+newGroupId);
-        userListGetter.update("groupMember", FieldValue.arrayRemove(this.getUserId()));
-        return;
+        DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+this.getUserId());
+        updateUserList.update("myGroupId", FieldValue.arrayRemove(newGroupId));
+        DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+newGroupId);
+        updateGroupList.update("groupMemberId", FieldValue.arrayRemove(this.getUserId()));
     }
 
     /**

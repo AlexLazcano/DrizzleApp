@@ -46,6 +46,7 @@ public class activity_pullUser extends AppCompatActivity {
                                     "\nUser Id: " + tarUser.getUserId()+
                                     "\nGender: " + tarUser.getGender(), Toast.LENGTH_LONG).show(); //...
                             //THIS IS JUST A EXAMPLE OF PULL USER
+                            //You can do other operations here...
                         }
                         else{
                             Toast.makeText(activity_pullUser.this,"User Id not found",Toast.LENGTH_SHORT ).show();
