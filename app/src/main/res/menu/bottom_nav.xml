@@ -2,10 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
     <item
         android:id="@+id/secondFragment"
-        android:icon="@drawable/ic_baseline_insert_emoticon_24"
+        android:icon="@drawable/friendss"
         android:title="Friends"
 
         />
