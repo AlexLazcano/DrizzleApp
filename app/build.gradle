@@ -59,9 +59,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.cardview:cardview:1.0.0'
@@ -74,8 +71,6 @@ repositories {
     implementation 'com.xwray:groupie:2.8.1'
     implementation 'com.xwray:groupie-kotlin-android-extensions:2.8.1'
     implementation "org.jetbrains.kotlin:kotlin-script-runtime:1.4.20"
-
-
 }
 
 repositories {
