@@ -30,10 +30,10 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
         android:gravity="center"
-        android:text="Please Input A Phone Number to login"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:text="@string/EnterPhone"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/inputPhone"
@@ -50,6 +50,6 @@
         android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign in / register" />
+        android:text="@string/SignIn" />
 
 </LinearLayout>

@@ -8,6 +8,7 @@
 package com.example.Drizzle;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Locale;
+
 public class HomeFragment extends Fragment {
 
     private View view;
@@ -35,6 +38,25 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+        Button langBtn = view.findViewById(R.id.langBtn);
+
+
+
+        langBtn.setOnClickListener(new View.OnClickListener() {
+
+            Locale locale = new Locale("es-rMX");
+
+
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
 
         Button searchBtn = view.findViewById(R.id.findGroupBtn); // the main button for initiating search algorithm.
         Button logOutBtn = view.findViewById(R.id.logOutBtn); //the log out button aft bottom right
