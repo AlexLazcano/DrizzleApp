@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class activity_addOrRemoveUserToGroup extends AppCompatActivity {
 
 
-    //This is an application of activity_pullUser,
+    //This is an application of activity_pullUser
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,6 @@ public class activity_addOrRemoveUserToGroup extends AppCompatActivity {
                 DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+pullUserId.getText().toString());
                 userPath.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
-                    //Get the newest User Id
                     public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException error) {
                         if (documentSnapshot.exists()){
                             User tarUser = documentSnapshot.toObject(User.class);
@@ -64,7 +63,6 @@ public class activity_addOrRemoveUserToGroup extends AppCompatActivity {
                 DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+pullUserId.getText().toString());
                 userPath.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
-                    //Get the newest User Id
                     public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException error) {
                         if (documentSnapshot.exists()){
                             User tarUser = documentSnapshot.toObject(User.class);
