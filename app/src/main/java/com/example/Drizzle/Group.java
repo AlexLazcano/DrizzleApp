@@ -17,7 +17,7 @@ import java.util.List;
 public class Group {
     private int groupId;
     private String groupName;
-    private List<Integer> groupMemberId;
+    private List<String> groupMemberId;
     private String size; // size (small, medium or large) of the Group.
     private String studyTopic; // topic of study for the Group.
 
@@ -43,7 +43,7 @@ public class Group {
      * group member getter
      * @return a list of user
      */
-    public List<Integer> getGroupMember() {
+    public List<String> getGroupMember() {
         return groupMemberId;
     }
 
@@ -85,7 +85,7 @@ public class Group {
      * the user.mygroup currently not contain this group
      * @param newUserId the new member
      */
-    public void addMember(int newUserId){
+    public void addMember(String newUserId){
         DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+newUserId);
         updateUserList.update("myGroupId", FieldValue.arrayUnion(this.getGroupId()));
         DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+this.getGroupId());
@@ -97,7 +97,7 @@ public class Group {
      * the user.mygroup currently still contain this group
      * @param quitUserId the user want to quit
      */
-    public void quitGroup(int quitUserId){
+    public void quitGroup(String quitUserId){
         DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+quitUserId);
         updateUserList.update("myGroupId", FieldValue.arrayRemove(this.getGroupId()));
         DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+this.getGroupId());

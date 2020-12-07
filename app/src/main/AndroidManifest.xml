@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Testing">
+        <activity android:name=".LoginActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".activity_addOrRemoveUserToGroup"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activity_pullAllData"
             android:exported="true" />

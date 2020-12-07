@@ -49,7 +49,7 @@ public class UserPool {
      * @param userId user's id
      * @return the index of target user, return -1 if not find
      */
-    private int userSearch(int userId){
+    private int userSearch(String userId){
         for ( int i = 0;i < this.numOfUsers(); i++) {
             if (this.user_list.get(i).getUserId() == userId) {
                 return i;
@@ -107,7 +107,7 @@ public class UserPool {
      * @param userId user's id
      * @return the target user(the class </user>), return null if not find
      */
-    public User findUserById(int userId){
+    public User findUserById(String userId){
         int userIndex = userSearch(userId);
         if ( userIndex != -1){
             return user_list.get(userIndex);
@@ -152,7 +152,7 @@ public class UserPool {
      * @param groupSize: Preferred size of group for to-be-placed user (small, medium or large)
      * @param studyTopic: Preferrred study topic of group for to-be-placed user.
      */
-    void groupMatchUser(int userId, String groupSize, String studyTopic) // searching user, user pool, user's preferred group size, topic of study
+    void groupMatchUser(String userId, String groupSize, String studyTopic) // searching user, user pool, user's preferred group size, topic of study
     {
         User newUser = this.findUserById(userId); // find user with which we are to operate
 

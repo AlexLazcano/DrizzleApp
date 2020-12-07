@@ -18,42 +18,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import java.util.HashMap;
-import java.util.Map;
 
 // Use the application default credentials
 
 public class activity_addUser extends AppCompatActivity {
 
     public static final String TAG = "addUser";
-    private int userId;
+    private String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     public UserPool newPool = new UserPool();
     private final DocumentReference UserIdGetter = FirebaseFirestore.getInstance().document("UserList/CurrentUserId");
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        UserIdGetter.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            //Get the newest User Id
-            public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException error) {
-                if (documentSnapshot.exists()){
-                    userId = documentSnapshot.getLong("userId").intValue();
-                }
-                //Create a new user ID if no exist (start from 100)
-                else{
-                    userId = 100;
-                    updateUserId();
-                }
-            }
-        });
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        UserIdGetter.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//            @Override
+//            //Get the newest User Id
+//            public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException error) {
+//                if (documentSnapshot.exists()){
+//                    userId = documentSnapshot.getLong("userId").intValue();
+//                }
+//                //Create a new user ID if no exist (start from 100)
+//                else{
+//                    userId = 100;
+//                    updateUserId();
+//                }
+//            }
+//        });
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +71,7 @@ public class activity_addUser extends AppCompatActivity {
                 final EditText postalCodeET = (EditText)findViewById(R.id.plainText_postal_code);
 
                 //Set the path for this user using user ID
-                DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+Integer.toString(userId));
+                DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+userId);
 
                 //Get information from editText and spinner
                 newUser.setUserId(userId);
@@ -99,27 +94,26 @@ public class activity_addUser extends AppCompatActivity {
                         }
                     }
                 });
-
-                //Update user ID number
-                userId++;
-                updateUserId();
+//                //Update user ID number
+//                userId++;
+//                updateUserId();
             }
         });
     }
 
-    private void updateUserId(){
-        Map<String, Object> userIdToSave = new HashMap<String, Object>();
-        userIdToSave.put("userId",userId);
-        UserIdGetter.set(userIdToSave).addOnCompleteListener(new OnCompleteListener<Void>(){
-            @Override
-            public void onComplete(@NonNull Task<Void> task){
-                if ( task.isSuccessful()){
-                    Log.d(TAG, "User Id updated!");
-                }
-                else{
-                    Log.w(TAG,"User Id update failed!",task.getException());
-                }
-            }
-        });
-    }
+//    private void updateUserId(){
+//        Map<String, Object> userIdToSave = new HashMap<String, Object>();
+//        userIdToSave.put("userId",userId);
+//        UserIdGetter.set(userIdToSave).addOnCompleteListener(new OnCompleteListener<Void>(){
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task){
+//                if ( task.isSuccessful()){
+//                    Log.d(TAG, "User Id updated!");
+//                }
+//                else{
+//                    Log.w(TAG,"User Id update failed!",task.getException());
+//                }
+//            }
+//        });
+//    }
 }

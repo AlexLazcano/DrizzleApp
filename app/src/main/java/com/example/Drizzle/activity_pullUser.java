@@ -35,10 +35,11 @@ public class activity_pullUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final EditText pullUserId = (EditText)findViewById(R.id.editText_pullGroup);
+                //The item's path that you want to pull, the path mush be String
                 DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+pullUserId.getText().toString());
+                //From here pulling start
                 userPath.addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
-                    //Get the newest User Id
                     public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException error) {
                         if (documentSnapshot.exists()){
                             User tarUser = documentSnapshot.toObject(User.class);
