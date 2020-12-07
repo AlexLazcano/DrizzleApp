@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-
+        Button profileSetting = view.findViewById(R.id.ProfileSettings);
 
 
         Button searchBtn = view.findViewById(R.id.findGroupBtn); // the main button for initiating search algorithm.
@@ -94,6 +94,17 @@ public class HomeFragment extends Fragment {
             group2.addView(subjectRadioButton);
         }
 
+        profileSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), activity_addUser.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//makesure user cant go back
+                startActivity(intent);
+            }
+        });
+
+
+
         searchBtn.setOnClickListener(new View.OnClickListener() { // what to do when searchBtn is pressed.
             @Override
             public void onClick(View v) {
@@ -111,6 +122,7 @@ public class HomeFragment extends Fragment {
                 numOfClicks++;
             }
         });
+
 
         logOutBtn.setOnClickListener(new View.OnClickListener() { //define logout process
             @Override

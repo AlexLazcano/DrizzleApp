@@ -18,9 +18,8 @@
             android:name=".GroupInfoActivity"
             android:label="Details" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
-        <activity android:name=".LoginActivity"
-            android:exported="true"></activity>
+        <activity android:name=".LoginActivity"/>
+
         <activity
             android:name=".activity_addOrRemoveUserToGroup"
             android:exported="true" />

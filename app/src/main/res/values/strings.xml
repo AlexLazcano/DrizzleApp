@@ -36,6 +36,7 @@
     <string name="Major">Major</string>
     <string name="Minor">Minor</string>
     <string name="personalityT">Personality Traits</string>
+    <string name="Settings">Profile Settings</string>
 
     <string-array name="group_titles">
         <item>Group 1</item>
