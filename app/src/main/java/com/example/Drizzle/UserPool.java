@@ -1,4 +1,7 @@
 package com.example.Drizzle;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +15,8 @@ import java.util.List;
 public class UserPool {
     private List<User> user_list;
     private List<Group> group_list;
+    private String TAG = "UserPool";
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     /**
      * Constructor:
@@ -44,7 +49,7 @@ public class UserPool {
      * @param userId user's id
      * @return the index of target user, return -1 if not find
      */
-    private int userSearch(int userId){
+    private int userSearch(String userId){
         for ( int i = 0;i < this.numOfUsers(); i++) {
             if (this.user_list.get(i).getUserId() == userId) {
                 return i;
@@ -84,25 +89,25 @@ public class UserPool {
         return -1;
     }
 
-    /**
-     * Clean up this user, remove him from all groups he belonged to and
-     * remove this user from user pool
-     * @param userId the user's id
-     */
-    public void writtenOff(int userId){
-        for ( int i = 0; i < this.findUserById(userId).getMyGroup().size(); ++i){
-            this.findUserById(userId).getMyGroup().get(i).quitGroup(this.findUserById(userId));
-        }
-        this.user_list.remove(this.findUserById(userId));
-        return;
-    }
+//    /**
+//     * Clean up this user, remove him from all groups he belonged to and
+//     * remove this user from user pool
+//     * @param userId the user's id
+//     */
+//    public void writtenOff(int userId){
+//        for ( int i = 0; i < this.findUserById(userId).getMyGroup().size(); ++i){
+//            this.findUserById(userId).getMyGroup().get(i).quitGroup(this.findUserById(userId));
+//        }
+//        this.user_list.remove(this.findUserById(userId));
+//        return;
+//    }
 
     /**
      * search the user by user id
      * @param userId user's id
      * @return the target user(the class </user>), return null if not find
      */
-    public User findUserById(int userId){
+    public User findUserById(String userId){
         int userIndex = userSearch(userId);
         if ( userIndex != -1){
             return user_list.get(userIndex);
@@ -113,7 +118,7 @@ public class UserPool {
     public void printAllInfo(){
         System.out.println("Now user pool have " + this.numOfUsers() +" users, and " + this.numOfGroups() + " groups" +
                 "\nThe user information are shown as following:");
-        for( int i =0; i < user_list.size(); ++i){
+        for( int i = 0; i < user_list.size(); ++i){
             this.user_list.get(i).printUserInfo();
         }
         System.out.println("The group information is shown as following:");
@@ -122,13 +127,32 @@ public class UserPool {
         }
     }
 
+    public String outPutAllInfo(){
+        String Info = "";
+        if (user_list.size() > 0){
+            Info += "Now user pool have " + this.numOfUsers() +" users,The user information are shown as following:\n";
+            for ( int i = 0; i < user_list.size(); ++i){
+                Info += user_list.get(i).outPutUserInfo();
+                Info += "\n";
+            }
+        }
+        if (group_list.size() > 0){
+            Info +=  "Now user pool have " + this.numOfGroups() +" groups,The group information are shown as following:\n";
+            for ( int i = 0; i < group_list.size(); ++i){
+                Info += group_list.get(i).outputGroupInfo();
+                Info += "\n";
+            }
+        }
+        return Info;
+    }
+
     /**
      * Places a user into a corresponding (or new) group, as per similarities with existing groups. Requires refinement.
      * @param userId: The ID of the user to be strategically placed into a group.
      * @param groupSize: Preferred size of group for to-be-placed user (small, medium or large)
      * @param studyTopic: Preferrred study topic of group for to-be-placed user.
      */
-    void groupMatchUser(int userId, String groupSize, String studyTopic) // searching user, user pool, user's preferred group size, topic of study
+    void groupMatchUser(String userId, String groupSize, String studyTopic) // searching user, user pool, user's preferred group size, topic of study
     {
         User newUser = this.findUserById(userId); // find user with which we are to operate
 
@@ -176,7 +200,7 @@ public class UserPool {
             {
                 tempIndex = 0;
                 for (int j = 0; j < filteredList.get(i).getGroupCount(); j++) // O(n^2). may be slow... V1, though... Right?
-                    tempIndex += filteredList.get(i).getGroupMember(j).simIndex(newUser);
+                    tempIndex += findUserById(filteredList.get(i).getGroupMember().get(j)).simIndex(newUser);
 
                 tempIndex /= filteredList.get(i).getGroupCount();
                 if (tempIndex > cGroupIndex)
@@ -191,11 +215,12 @@ public class UserPool {
 
         if (minMatch >= LOW_BOUND)
         {
-            closestGroup.addMember(newUser); // !!!
+            closestGroup.addMember(newUser.getUserId()); // !!!
             return;
         }
 
-        Group newGroup = new Group(this, "New Group", 0, groupSize, studyTopic); // no groups good enough. create a new one.
+        Group newGroup = new Group("New Group", 0, groupSize, studyTopic); // no groups good enough. create a new one.
+        this.addGroup(newGroup);
     }
 }
 

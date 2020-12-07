@@ -1,4 +1,9 @@
 package com.example.Drizzle;
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,21 +17,19 @@ import java.util.List;
 public class Group {
     private int groupId;
     private String groupName;
-    private List<User> groupMember;
+    private List<String> groupMemberId;
     private String size; // size (small, medium or large) of the Group.
     private String studyTopic; // topic of study for the Group.
 
-    /**
-     * constructor: build the list of user and add this group
-     * into group list
-     * @param newPool the pool be added to
-     */
-    public Group(UserPool newPool, String groupName, int groupId, String size, String studyTopic) {
+    public Group(){}
+
+
+    public Group(String groupName, int groupId, String size, String studyTopic) {
         this.groupName = groupName;
         this.groupId = groupId;
-        this.groupMember = new LinkedList<>();
+        this.groupMemberId = new LinkedList<>();
 
-        if (size == "small" || size == "medium" || size == "large")
+        if (size.equals("small") || size.equals("medium") || size.equals("large"))
             this.size = size; // the allocated size for the Group. So, small, medium or large.
         else
             this.size = "unspecified"; // no or invalid specified size.
@@ -34,15 +37,14 @@ public class Group {
         // input verification for study topic? we need a bank of options that are considered acceptable topics.
         this.studyTopic = studyTopic; // the allocated study topic. For instance, "mathematics."
 
-        newPool.addGroup(this);
     }
 
     /**
      * group member getter
      * @return a list of user
      */
-    public List<User> getGroupMember() {
-        return groupMember;
+    public List<String> getGroupMember() {
+        return groupMemberId;
     }
 
     /**
@@ -81,27 +83,25 @@ public class Group {
     /**
      * add new member into the group, and also call joinGroup for user if
      * the user.mygroup currently not contain this group
-     * @param newUser the new member
+     * @param newUserId the new member
      */
-    public void addMember(User newUser){
-        this.groupMember.add(newUser);
-        if ( !newUser.getMyGroup().contains(this)) {
-            newUser.joinGroup(this);
-        }
-        return;
+    public void addMember(String newUserId){
+        DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+newUserId);
+        updateUserList.update("myGroupId", FieldValue.arrayUnion(this.getGroupId()));
+        DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+this.getGroupId());
+        updateGroupList.update("groupMemberId", FieldValue.arrayUnion(newUserId));
     }
 
     /**
      * remove the user from group member, and also call leaveGroup for user if
      * the user.mygroup currently still contain this group
-     * @param quitUser the user want to quit
+     * @param quitUserId the user want to quit
      */
-    public void quitGroup(User quitUser){
-        this.groupMember.remove(quitUser);
-        if ( quitUser.getMyGroup().contains(this) ){
-            quitUser.leaveGroup(this);
-        }
-        return;
+    public void quitGroup(String quitUserId){
+        DocumentReference updateUserList = FirebaseFirestore.getInstance().document("UserList/"+quitUserId);
+        updateUserList.update("myGroupId", FieldValue.arrayRemove(this.getGroupId()));
+        DocumentReference updateGroupList = FirebaseFirestore.getInstance().document("GroupList/"+this.getGroupId());
+        updateGroupList.update("groupMemberId", FieldValue.arrayRemove(quitUserId));
     }
 
     /**
@@ -109,7 +109,7 @@ public class Group {
      * @return  the number of the member
      */
     public int getGroupCount(){
-        return groupMember.size();
+        return groupMemberId.size();
     }
 
     public String getGroupSize() // no corresponding setter.
@@ -122,6 +122,22 @@ public class Group {
         return studyTopic;
     }
 
+    public void printGroupInfo(){
+        System.out.println("Group name: " + groupName +
+                "\nGroupId: "+ groupId +
+                "\nMy member Id: "+ groupMemberId +
+                "\nSize: "+ size +
+                "\nStudy topic: "+ studyTopic +"\n");
+    }
+
+    public String outputGroupInfo(){
+        return "Group name: " + groupName +
+                "\nGroupId: "+ groupId +
+                "\nMy member Id: "+ groupMemberId +
+                "\nSize: "+ size +
+                "\nStudy topic: "+ studyTopic +"\n";
+    }
+
     /**
      Test to see if the group is full as per specification of small, medium and large.
      */
@@ -129,44 +145,8 @@ public class Group {
     {
         final int S_MAX = 3, M_MAX = 5, L_MAX = 8;
 
-        return ((size == "small") && (groupMember.size() == S_MAX)) ||
-                ((size == "medium") && (groupMember.size() == M_MAX)) ||
-                ((size == "large") && (groupMember.size() == L_MAX)); // sloppy.
-    }
-
-    /** Return member at specific index in group
-     * @return member at specific index in group.
-     */
-    public User getGroupMember(int index)
-    {
-        if (index >= 0 && index < groupMember.size())
-            return groupMember.get(index);
-        return null;
-    }
-
-    /**
-     * search the user in this group by user id
-     * @param userId target user id
-     * @return the index of the user(index for the user list in this group), return -1 if not find
-     */
-    private int memberSearch(int userId){
-        for( int i = 0 ; i < this.getGroupCount(); ++i){
-            if ( this.groupMember.get(i).getUserId() == userId) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-
-    /**
-     * print group information, only for test
-     */
-    public void printGroupInfo(){
-        System.out.println("Group name: " + groupName + "\nGroup size :" + this.getGroupCount() + "\nThis group has " +
-                "following members:");
-        for( int i = 0; i < this.getGroupCount(); ++i){
-            System.out.println( (i+1) + "th:\nUser name: " + this.groupMember.get(i).getName() + "\n" );
-        }
+        return ((size.equals("small")) && (groupMemberId.size() == S_MAX)) ||
+                ((size.equals("medium")) && (groupMemberId.size() == M_MAX)) ||
+                ((size.equals("large")) && (groupMemberId.size() == L_MAX)); // sloppy.
     }
 }
