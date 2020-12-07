@@ -9,7 +9,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please Input A Phone Number to login"
+        android:text="@string/EnterPhone"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         tools:layout_editor_absoluteX="19dp"
         tools:layout_editor_absoluteY="155dp" />
@@ -27,7 +27,7 @@
         android:id="@+id/btnSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign in / register"
+        android:text="@string/SignIn"
         tools:layout_editor_absoluteX="116dp"
         tools:layout_editor_absoluteY="421dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

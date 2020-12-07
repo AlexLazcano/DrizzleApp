@@ -14,6 +14,18 @@
     <string name="not_searching_button_line">Not currently searching.</string>
     <string name="subject_to_study">Subject to Study:</string>
     <string name="group_size">Group Size:</string>
+    <string name="log_out">Log Out</string>
+    <string name="lang">Change Language</string>
+    <string name="verify">Verify Code</string>
+    <string name="SignIn">Sign In / Register</string>
+    <string name="EnterPhone">Please Input A Phone Number to login</string>
+    <string name="FindGroup">Find Groups</string>
+    <string name="group">Groups</string>
+    <string name="AddGroups">Add Group</string>
+    <string name="Refresh">Refresh</string>
+    <string name="Friends">Friends</string>
+    <string name="addFriends">Add Friends</string>
+    <string name="time">hh:mm a</string>
 
     <string name="titleWiz">Let us get to know you</string>
     <string name="Name">Name</string>

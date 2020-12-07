@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Drizzle</string>
+    <string name="drizzle_app">Drizzle app</string>
+    <string name="current_groups">Grupos Actuales</string>
+
+    <string name="first">First Fragment</string>
+    <string name="second">second Fragment</string>
+    <string name="third">third Fragment</string>
+    <string name="not_currently_searching">No esta buscando.</string>
+    <string name="find_my_group">Encuentra Mi Grupo</string>
+    <string name="welcome_name">Bienvenido, Nombre!</string>
+    <string name="home">Drizzle</string>
+    <string name="searching_button_line">Busca el perfucto grupo para estudiar... Presiona para cancelar.</string>
+    <string name="not_searching_button_line">No esta buscando...</string>
+    <string name="subject_to_study">Tema para estudiar</string>
+    <string name="group_size">Tamaño del Grupo</string>
+    <string name="log_out">Cerrar Sesión</string>
+    <string name="lang">Cambiar Idioma</string>
+    <string name="verify">Verificar Codigo</string>
+    <string name="SignIn">Iniciar Sesión / Regristrarse</string>
+    <string name="EnterPhone">Ingresar número telefónico</string>
+    <string name="FindGroup">Encotrar Grupos</string>
+    <string name="group">Grupos</string>
+    <string name="AddGroups">Añadir Grupo</string>
+    <string name="Refresh">Actualizar</string>
+    <string name="Friends">Amigos</string>
+    <string name="addFriends">Añadir Amigo</string>
+    <string name="time">hh:mm a</string>
+
+    <string-array name="group_titles">
+        <item>Grupo 1</item>
+        <item>Grupo 2</item>
+        <item>Grupo 3</item>
+        <item>Grupo 4</item>
+        <item>Grupo 5</item>
+        <item>Grupo 6</item>
+        <item>Grupo 7</item>
+        <item>Grupo 8</item>
+        <item>Grupo 9</item>
+    </string-array>
+
+    <string-array name="group_desc">
+        <item>Descripción 1</item>
+        <item>Descripción 2</item>
+        <item>Descripción 3</item>
+        <item>Descripción 4</item>
+        <item>Descripción 5</item>
+        <item>Descripción 6</item>
+        <item>Descripción 7</item>
+        <item>Descripción 8</item>
+        <item>Descripción 9</item>
+    </string-array>
+
+    <string-array name="firstNamesFriend">
+        <item>Primer Nombre 1</item>
+        <item>Primer Nombre 2</item>
+        <item>Primer Nombre 3</item>
+        <item>Primer Nombre 4</item>
+        <item>Primer Nombre 5</item>
+        <item>Primer Nombre 6</item>
+        <item>Primer Nombre 7</item>
+        <item>Primer Nombre 8</item>
+        <item>Primer Nombre 9</item>
+    </string-array>
+    <string-array name="secondNamesFriend">
+        <item>Segundo 1</item>
+        <item>Segundo 2</item>
+        <item>Segundo 3</item>
+        <item>Segundo 4</item>
+        <item>Segundo 5</item>
+        <item>Segundo 6</item>
+        <item>Segundo 7</item>
+        <item>Segundo 8</item>
+        <item>Segundo 9</item>
+    </string-array>
+</resources>

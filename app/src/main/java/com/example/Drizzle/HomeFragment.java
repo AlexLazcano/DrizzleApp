@@ -7,6 +7,8 @@
 
 package com.example.Drizzle;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +21,10 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Locale;
 
 public class HomeFragment extends Fragment {
 
@@ -33,7 +39,12 @@ public class HomeFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+
+
+
         Button searchBtn = view.findViewById(R.id.findGroupBtn); // the main button for initiating search algorithm.
+        Button logOutBtn = view.findViewById(R.id.logOutBtn); //the log out button aft bottom right
 
         TextView statusText = view.findViewById(R.id.searchingStatus); // the text with the searching algorithm's status.
         TextView userName = view.findViewById(R.id.userName); // for the name with which one is greeted.
@@ -98,6 +109,17 @@ public class HomeFragment extends Fragment {
                     statusText.setText(R.string.not_searching_button_line);
                 }
                 numOfClicks++;
+            }
+        });
+
+        logOutBtn.setOnClickListener(new View.OnClickListener() { //define logout process
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Log.d("getinstance", FirebaseAuth.getInstance().toString());
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//makesure user cant go back
+                startActivity(intent);
             }
         });
 
