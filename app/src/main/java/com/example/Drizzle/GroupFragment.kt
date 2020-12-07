@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Drizzle.recyclerview.item.PersonItem
 import com.google.firebase.firestore.ListenerRegistration
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
+import com.xwray.groupie.OnItemClickListener
 import com.xwray.groupie.Section
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import kotlinx.android.synthetic.main.fragment_group.*
+import org.jetbrains.anko.support.v4.startActivity
 
 class GroupFragment : Fragment() {
 
@@ -57,14 +60,13 @@ class GroupFragment : Fragment() {
                 adapter = GroupAdapter<GroupieViewHolder>().apply {
                     peopleSection = Section(items)
                     add (peopleSection)
+                    setOnItemClickListener(onItemClick)
                 }
             }
             shouldInitRecyclerView = false
         }
 
-        fun updateItems(){
-
-        }
+        fun updateItems() = peopleSection.update(items)
 
         if(shouldInitRecyclerView)
             init()
@@ -72,4 +74,14 @@ class GroupFragment : Fragment() {
             updateItems()
 
     }
+
+    private val onItemClick = OnItemClickListener { item, view ->
+        if (item is PersonItem) {
+            startActivity<ChatActivity>(
+                    AppConstants.USER_NAME to item.group.groupName,
+                    AppConstants.USER_ID to item.userId
+            )
+        }
+    }
+
 }
