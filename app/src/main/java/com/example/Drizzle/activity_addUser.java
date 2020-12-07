@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.LinkedList;
+import java.util.List;
 
 // Use the application default credentials
 
@@ -54,6 +61,55 @@ public class activity_addUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+        DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+ userId);
+        userPath.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException error) {
+                if (documentSnapshot.exists()){
+                    final EditText nameET = (EditText)findViewById(R.id.plainText_user_name);
+                    final Spinner genderET = (Spinner)findViewById(R.id.spinner_gender);
+                    final Spinner schoolET = (Spinner)findViewById(R.id.spinner_school);
+                    final Spinner majorET = (Spinner)findViewById(R.id.spinner_major);
+                    final Spinner minorET = (Spinner)findViewById(R.id.spinner_minor);
+                    final EditText postalCodeET = (EditText)findViewById(R.id.plainText_postal_code);
+                    final Spinner personalityET = (Spinner)findViewById(R.id.spinner_personality);
+                    final EditText courseTaken_1ET = (EditText)findViewById(R.id.editTextText_courseTaken_1);
+                    final EditText courseTaken_2ET = (EditText)findViewById(R.id.editTextText_courseTaken_2);
+                    final EditText courseTaken_3ET = (EditText)findViewById(R.id.editTextText_courseTaken_3);
+                    final EditText courseTaken_4ET = (EditText)findViewById(R.id.editTextText_courseTaken_4);
+                    final EditText favCourse_1ET = (EditText)findViewById(R.id.editTextText_favCourse_1);
+                    final EditText favCourse_2ET = (EditText)findViewById(R.id.editTextText_favCourse_2);
+                    final EditText favCourse_3ET = (EditText)findViewById(R.id.editTextText_favCourse_3);
+                    final EditText biographyET = (EditText)findViewById(R.id.plainText_biography);
+                    User tarUser = documentSnapshot.toObject(User.class);
+                    nameET.setText(tarUser.getName());
+                    genderET.setSelection(getIndex(genderET,tarUser.getGender()));
+                    majorET.setSelection(getIndex(majorET,tarUser.getMajor()));
+                    minorET.setSelection(getIndex(minorET,tarUser.getMinor()));
+                    schoolET.setSelection(getIndex(schoolET,tarUser.getSchool()));
+                    postalCodeET.setText(tarUser.getPostalCode());
+                    if (tarUser.getPersonality() == 1){
+                        personalityET.setSelection(getIndex(personalityET,"Outgoing"));
+                    }
+                    else if (tarUser.getPersonality() == 0){
+                        personalityET.setSelection(getIndex(personalityET,"Reserved"));
+                    }
+                    else{
+                        personalityET.setSelection(getIndex(personalityET,"Neutral"));
+                    }
+                    courseTaken_1ET.setText(tarUser.getCurrentClassed().get(0));courseTaken_2ET.setText(tarUser.getCurrentClassed().get(1));
+                    courseTaken_3ET.setText(tarUser.getCurrentClassed().get(2));courseTaken_4ET.setText(tarUser.getCurrentClassed().get(3));
+                    favCourse_1ET.setText((tarUser.getCurrentClassed().get(0)));favCourse_2ET.setText((tarUser.getCurrentClassed().get(1)));
+                    favCourse_3ET.setText((tarUser.getCurrentClassed().get(2)));
+                    biographyET.setText((tarUser.getBiography()));
+
+                }
+                else{
+                    Toast.makeText(activity_addUser.this,"This is a new User",Toast.LENGTH_SHORT ).show();
+                }
+            }
+        });
     }
 
     public void addUserToCloud(View view){
@@ -69,6 +125,15 @@ public class activity_addUser extends AppCompatActivity {
                 final Spinner majorET = (Spinner)findViewById(R.id.spinner_major);
                 final Spinner minorET = (Spinner)findViewById(R.id.spinner_minor);
                 final EditText postalCodeET = (EditText)findViewById(R.id.plainText_postal_code);
+                final Spinner personalityET = (Spinner)findViewById(R.id.spinner_personality);
+                final EditText courseTaken_1ET = (EditText)findViewById(R.id.editTextText_courseTaken_1);
+                final EditText courseTaken_2ET = (EditText)findViewById(R.id.editTextText_courseTaken_2);
+                final EditText courseTaken_3ET = (EditText)findViewById(R.id.editTextText_courseTaken_3);
+                final EditText courseTaken_4ET = (EditText)findViewById(R.id.editTextText_courseTaken_4);
+                final EditText favCourse_1ET = (EditText)findViewById(R.id.editTextText_favCourse_1);
+                final EditText favCourse_2ET = (EditText)findViewById(R.id.editTextText_favCourse_2);
+                final EditText favCourse_3ET = (EditText)findViewById(R.id.editTextText_favCourse_3);
+                final EditText biographyET = (EditText)findViewById(R.id.plainText_biography);
 
                 //Set the path for this user using user ID
                 DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+userId);
@@ -81,6 +146,27 @@ public class activity_addUser extends AppCompatActivity {
                 newUser.setMajor(majorET.getSelectedItem().toString());
                 newUser.setMinor(minorET.getSelectedItem().toString());
                 newUser.setPostalCode(postalCodeET.getText().toString());
+                if (personalityET.getSelectedItem().toString().equals("Outgoing")){
+                    newUser.setPersonality(1);
+                }
+                else if (personalityET.getSelectedItem().toString().equals("Reserved")){
+                    newUser.setPersonality(-1);
+                }
+                else{
+                    newUser.setPersonality(0);
+                }
+                List<String> courseTaken = new LinkedList<>();
+                courseTaken.add(courseTaken_1ET.getText().toString());courseTaken.add(courseTaken_2ET.getText().toString());
+                courseTaken.add(courseTaken_3ET.getText().toString());courseTaken.add(courseTaken_4ET.getText().toString());
+
+                List<String> favCourse = new LinkedList<>();
+                favCourse.add(favCourse_1ET.getText().toString());
+                favCourse.add(favCourse_2ET.getText().toString());
+                favCourse.add(favCourse_3ET.getText().toString());
+
+                newUser.setCurrentClassed(courseTaken);
+                newUser.setFavPastClass(favCourse);
+                newUser.setBiography(biographyET.getText().toString());
 
                 //Push it to the firebase
                 userPath.set(newUser).addOnCompleteListener(new OnCompleteListener<Void>(){
@@ -99,6 +185,16 @@ public class activity_addUser extends AppCompatActivity {
 //                updateUserId();
             }
         });
+    }
+
+    private int getIndex(Spinner spinner, String myString){
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                return i;
+            }
+        }
+
+        return 0;
     }
 
 //    private void updateUserId(){

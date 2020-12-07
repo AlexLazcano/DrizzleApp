@@ -63,4 +63,16 @@
         <item>large</item>
     </string-array>
 
+    <string-array name="courseList">
+        <item>empty</item>
+        <item>medium</item>
+        <item>large</item>
+    </string-array>
+
+    <string-array name="personality">
+        <item>Outgoing</item>
+        <item>Neutral</item>
+        <item>Reserved</item>
+    </string-array>
+
 </resources>
