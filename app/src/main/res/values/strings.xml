@@ -13,7 +13,7 @@
     <string name="searching_button_line">Searching for your perfect study group... Press to cancel.</string>
     <string name="not_searching_button_line">Not currently searching.</string>
     <string name="subject_to_study">Subject to Study:</string>
-    <string name="group_size">Group Size:</string>
+
     <string name="log_out">Log Out</string>
     <string name="lang">Change Language</string>
     <string name="verify">Verify Code</string>
@@ -83,4 +83,24 @@
         <item>Second 8</item>
         <item>Second 9</item>
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="postal_code">Postal code for you current place:</string>
+    <string name="minor">Minor:</string>
+    <string name="school">School:</string>
+    <string name="major">Major:</string>
+    <string name="name">Name:</string>
+    <string name="gender">Gender:</string>
+    <string name="submit">Submit</string>
+    <string name="study_topic">Study topic:</string>
+    <string name="group_name">Group name:</string>
+    <string name="group_size">Group size:</string>
+    <string name="button">Button</string>
 </resources>
