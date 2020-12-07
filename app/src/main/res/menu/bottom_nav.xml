@@ -11,12 +11,12 @@
         />
     <item
         android:id="@+id/firstFragment"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/drizzle_logo"
         android:title="Home" />
 
 
-    <item android:title="Groups"
+    <item
         android:id="@+id/groupFragment"
-        android:icon="@drawable/ic_baseline_group_24"
-        />
+        android:icon="@drawable/group"
+        android:title="Groups" />
 </menu>
