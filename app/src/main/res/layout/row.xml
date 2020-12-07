@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/transparent"
+    android:background="@color/white"
     android:id="@+id/mainLayout"
     >
 
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gradient2">
+            android:background="@drawable/opposite_round">
 
             <TextView
                 android:id="@+id/textTitle"
