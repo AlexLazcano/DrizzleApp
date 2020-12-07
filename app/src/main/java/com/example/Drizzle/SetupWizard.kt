@@ -9,11 +9,10 @@ import com.google.firebase.auth.FirebaseUserMetadata
 import com.google.firebase.database.FirebaseDatabase
 
 class SetupWizard:AppCompatActivity() {
-    private val user= User()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.setup_wizard)
-        user.
+
 
     }
 }
