@@ -11,8 +11,8 @@
     <string name="find_my_group">Encuentra Mi Grupo</string>
     <string name="welcome_name">Bienvenido, Nombre!</string>
     <string name="home">Drizzle</string>
-    <string name="searching_button_line">Busca el perfucto grupo para estudiar... Presiona para cancelar.</string>
-    <string name="not_searching_button_line">No esta buscando...</string>
+    <string name="searching_button_line">Busca el perfucto grupo para estudiar&#8230; Presiona para cancelar.</string>
+    <string name="not_searching_button_line">No esta buscando&#8230;</string>
     <string name="subject_to_study">Tema para estudiar</string>
     <string name="group_size">Tamaño del Grupo</string>
     <string name="log_out">Cerrar Sesión</string>
@@ -27,6 +27,17 @@
     <string name="Friends">Amigos</string>
     <string name="addFriends">Añadir Amigo</string>
     <string name="time">hh:mm a</string>
+
+    <string name="titleWiz">Let us get to know you</string>
+    <string name="Name">Nombre</string>
+    <string name="Postal">Codigo Postal</string>
+    <string name="Gender1">Hombre</string>
+    <string name="Gender2">Mujer</string>
+    <string name="Gender3">Otro</string>
+    <string name="Major">Carrera</string>
+    <string name="Minor">Assignatura Secundaria</string>
+    <string name="personalityT">Personalidad</string>
+
 
     <string-array name="group_titles">
         <item>Grupo 1</item>
