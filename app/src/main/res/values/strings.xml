@@ -25,6 +25,7 @@
     <string name="Refresh">Refresh</string>
     <string name="Friends">Friends</string>
     <string name="addFriends">Add Friends</string>
+    <string name="time">hh:mm a</string>
 
     <string-array name="group_titles">
         <item>Group 1</item>

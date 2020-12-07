@@ -26,6 +26,7 @@
     <string name="Refresh">Actualizar</string>
     <string name="Friends">Amigos</string>
     <string name="addFriends">Añadir Amigo</string>
+    <string name="time">hh:mm a</string>
 
     <string-array name="group_titles">
         <item>Grupo 1</item>

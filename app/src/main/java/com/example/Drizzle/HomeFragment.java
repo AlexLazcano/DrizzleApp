@@ -40,21 +40,6 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        Button langBtn = view.findViewById(R.id.langBtn);
-
-
-
-        langBtn.setOnClickListener(new View.OnClickListener() {
-
-            Locale locale = new Locale("es-rMX");
-
-
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
 
 
 

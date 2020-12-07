@@ -8,6 +8,22 @@
     android:background="@color/transparent"
     tools:context=".HomeFragment">
 
+
+    <TextClock
+        android:id="@+id/clock2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:format12Hour="@string/time"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/groupSizeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        app:layout_constraintVertical_bias="0.333" />
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
@@ -19,7 +35,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/userName"
@@ -39,22 +56,10 @@
         android:text="@string/find_my_group"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.566" />
-
-    <TextView
-        android:id="@+id/searchingStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/not_currently_searching"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/findGroupBtn" />
+        app:layout_constraintVertical_bias="0.631" />
 
     <RadioGroup
         android:id="@+id/groupSizeRadioGroup"
@@ -63,9 +68,10 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/findGroupBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.408" />
 
     <RadioGroup
         android:id="@+id/groupSubjectRadioGroup"
@@ -75,8 +81,10 @@
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/findGroupBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupSizeRadioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/groupSizeRadioGroup"
+        app:layout_constraintVertical_bias="0.495" />
 
     <TextView
         android:id="@+id/subjectText"
@@ -85,10 +93,10 @@
         android:text="@string/subject_to_study"
         app:layout_constraintBottom_toTopOf="@+id/groupSubjectRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupSizeRadioGroup"
-        app:layout_constraintVertical_bias="0.736" />
+        app:layout_constraintVertical_bias="0.71" />
 
     <TextView
         android:id="@+id/groupSizeText"
@@ -97,9 +105,22 @@
         android:text="@string/group_size"
         app:layout_constraintBottom_toTopOf="@+id/groupSizeRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.9" />
+
+    <TextView
+        android:id="@+id/searchingStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/not_currently_searching"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findGroupBtn" />
 
     <Button
         android:id="@+id/logOutBtn"
@@ -113,16 +134,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.896" />
 
-    <Button
-        android:id="@+id/langBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
-        android:layout_marginBottom="68dp"
-        android:text="@string/lang"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/logOutBtn"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
