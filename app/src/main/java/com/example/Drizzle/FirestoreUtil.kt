@@ -130,4 +130,11 @@ object FirestoreUtil {
                     onListen(items)
                 }
     }
+
+    fun sendMessage(message: Message, channelId: String){
+        chatChannelsCollectionRef.document(channelId)
+                .collection("messages")
+                .add(message)
+    }
+
 }
