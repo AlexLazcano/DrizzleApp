@@ -6,6 +6,7 @@
  */
 package com.example.Drizzle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,7 @@ public class activity_addUser extends AppCompatActivity {
     private String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     public UserPool newPool = new UserPool();
     private final DocumentReference UserIdGetter = FirebaseFirestore.getInstance().document("UserList/CurrentUserId");
+    private Button backBtn;
 
 //    @Override
 //    protected void onStart() {
@@ -61,6 +63,23 @@ public class activity_addUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+
+        backBtn = findViewById(R.id.backBtn);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);//makesure user cant go back
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
 
         DocumentReference userPath = FirebaseFirestore.getInstance().document("UserList/"+ userId);
         userPath.addSnapshotListener(new EventListener<DocumentSnapshot>() {

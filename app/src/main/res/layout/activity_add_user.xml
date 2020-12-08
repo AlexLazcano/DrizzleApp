@@ -7,6 +7,7 @@
     tools:context=".activity_addUser"
     android:background="@drawable/gradient">
 
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
@@ -376,6 +377,20 @@
                 android:text='Please write the\n class name as the\n following format:\n"CMPT 276"'
                 app:layout_constraintEnd_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/full_round"
+                android:id="@+id/backBtn"
+                android:text="@string/back"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.021"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
